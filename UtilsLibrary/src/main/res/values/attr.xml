@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="isSmallScreen">false</bool>
+    <bool name="isLargeScreen">false</bool>
+    <bool name="isXLargeScreen">false</bool>
+    <bool name="isPortrait">false</bool>
+    <declare-styleable name="ArGlobal">
+        <!--Base Start-->
+        <attr name="ar_cornerRadius" format="dimension|integer" />
+        <attr name="ar_cornerRadiusLeft" format="dimension|integer" />
+        <attr name="ar_cornerRadiusTop" format="dimension|integer" />
+        <attr name="ar_cornerRadiusRight" format="dimension|integer" />
+        <attr name="ar_cornerRadiusBottom" format="dimension|integer" />
+        <attr name="ar_cornerRadiusTopLeft" format="dimension|integer" />
+        <attr name="ar_cornerRadiusTopRight" format="dimension|integer" />
+        <attr name="ar_cornerRadiusBottomLeft" format="dimension|integer" />
+        <attr name="ar_cornerRadiusBottomRight" format="dimension|integer" />
+        <attr name="ar_itemBorderWidth" format="dimension|integer" />
+        <attr name="ar_itemBorderColor" format="color" />
+        <attr name="ar_style" format="reference|integer" />
+        <!--Base End-->
+
+        <!--LayoutBase Start-->
+        <attr name="ar_hasRipple" format="boolean" />
+        <attr name="ar_rippleSize" format="integer" />
+        <attr name="ar_rippleVelocity" format="integer" />
+        <attr name="ar_rippleColor" format="color" />
+        <attr name="ar_active" format="boolean" />
+        <attr name="ar_deActiveColor" format="color" />
+        <attr name="ar_deActiveBackgroundColor" format="color" />
+        <!--LayoutBase End-->
+
+        <!--Button-->
+        <attr name="android:text" />
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <!--Button End-->
+
+        <!--Recycler Start-->
+        <attr name="ar_orientation">
+            <flag name="VERTICAL" value="0" />
+            <flag name="HORIZONTAL" value="1" />
+        </attr>
+        <!--Recycler End-->
+
+        <!--DateTimePiker Start-->
+        <attr name="ar_hourBackgroundColor" format="color" />
+        <attr name="ar_minuteBackgroundColor" format="color" />
+        <attr name="ar_secondBackgroundColor" format="color" />
+        <attr name="ar_activeItemBackgroundColor" format="color" />
+        <attr name="ar_arrowColor" format="color" />
+        <attr name="ar_hourArrowColor" format="color" />
+        <attr name="ar_minuteArrowColor" format="color" />
+        <attr name="ar_secondArrowColor" format="color" />
+        <attr name="ar_itemActiveBorderColor" format="color" />
+        <attr name="ar_itemActiveBorderWidth" format="dimension|integer" />
+        <attr name="ar_hourColor" format="color" />
+        <attr name="ar_minuteColor" format="color" />
+        <attr name="ar_secondColor" format="color" />
+        <attr name="ar_timePikerDivider" format="string" />
+        <attr name="ar_timePikerDividerColor" format="color" />
+        <attr name="ar_timePikerDividerSize" format="dimension" />
+        <attr name="ar_format">
+            <flag name="H12" value="0" />
+            <flag name="H24" value="1" />
+        </attr>
+        <attr name="ar_hasHour" format="boolean" />
+        <attr name="ar_hasMinute" format="boolean" />
+        <attr name="ar_hasSecond" format="boolean" />
+        <attr name="ar_hourStep" format="integer" />
+        <attr name="ar_minuteStep" format="integer" />
+        <attr name="ar_secondStep" format="integer" />
+        <attr name="ar_divider" format="string" />
+        <!--DateTimePiker End-->
+
+        <!--CardDatePicker-->
+        <attr name="ar_itemBackgroundColor" format="color" />
+        <attr name="ar_yearBackgroundColor" format="color" />
+        <attr name="ar_monthBackgroundColor" format="color" />
+        <attr name="ar_dayBackgroundColor" format="color" />
+        <attr name="ar_activeYearBackgroundColor" format="color" />
+        <attr name="ar_activeMonthBackgroundColor" format="color" />
+        <attr name="ar_activeDayBackgroundColor" format="color" />
+        <attr name="ar_textColor" format="color" />
+        <attr name="ar_yearColor" format="color" />
+        <attr name="ar_monthColor" format="color" />
+        <attr name="ar_dayColor" format="color" />
+        <attr name="ar_dayNameColor" format="color" />
+        <attr name="ar_activeTextColor" format="color" />
+        <attr name="ar_activeYearColor" format="color" />
+        <attr name="ar_activeMonthColor" format="color" />
+        <attr name="ar_activeDayColor" format="color" />
+        <attr name="ar_activeDayNameColor" format="color" />
+        <attr name="ar_itemElevation" format="integer|dimension" />
+        <attr name="ar_dateGradientStartColor" format="color" />
+        <attr name="ar_dateGradientEndColor" format="color" />
+        <attr name="ar_timeGradientStartColor" format="color" />
+        <attr name="ar_timeGradientEndColor" format="color" />
+        <!--CardDatePicker End-->
+
+        <!--RollingItemPicker-->
+        <attr name="ar_infinite" format="boolean" />
+        <attr name="ar_gradientStartColor" format="color" />
+        <attr name="ar_gradientEndColor" format="color" />
+        <!--RollingItemPicker End-->
+
+    </declare-styleable>
+    <declare-styleable name="ErisEditText">
+        <attr name="ar_cornerRadius" />
+        <attr name="ar_cornerRadiusLeft" />
+        <attr name="ar_cornerRadiusTop" />
+        <attr name="ar_cornerRadiusRight" />
+        <attr name="ar_cornerRadiusBottom" />
+        <attr name="ar_cornerRadiusTopLeft" />
+        <attr name="ar_cornerRadiusTopRight" />
+        <attr name="ar_cornerRadiusBottomLeft" />
+        <attr name="ar_cornerRadiusBottomRight" />
+        <attr name="ar_itemBorderWidth" />
+        <attr name="ar_itemBorderColor" />
+        <attr name="ar_style" />
+    </declare-styleable>
+    <declare-styleable name="ErisRelativeLayout">
+        <attr name="ar_deActiveBackgroundColor" />
+        <attr name="ar_cornerRadius" />
+        <attr name="ar_cornerRadiusLeft" />
+        <attr name="ar_cornerRadiusTop" />
+        <attr name="ar_cornerRadiusRight" />
+        <attr name="ar_cornerRadiusBottom" />
+        <attr name="ar_cornerRadiusTopLeft" />
+        <attr name="ar_cornerRadiusTopRight" />
+        <attr name="ar_cornerRadiusBottomLeft" />
+        <attr name="ar_cornerRadiusBottomRight" />
+        <attr name="ar_itemBorderWidth" />
+        <attr name="ar_itemBorderColor" />
+        <attr name="ar_hasRipple" />
+        <attr name="ar_rippleSize" />
+        <attr name="ar_rippleVelocity" />
+        <attr name="ar_rippleColor" />
+        <attr name="ar_active" />
+        <attr name="ar_deActiveColor" />
+        <attr name="ar_style" />
+    </declare-styleable>
+    <declare-styleable name="ErisLinearLayout" parent="ErisGlobal">
+        <attr name="ar_deActiveBackgroundColor" />
+        <attr name="ar_cornerRadius" />
+        <attr name="ar_cornerRadiusLeft" />
+        <attr name="ar_cornerRadiusTop" />
+        <attr name="ar_cornerRadiusRight" />
+        <attr name="ar_cornerRadiusBottom" />
+        <attr name="ar_cornerRadiusTopLeft" />
+        <attr name="ar_cornerRadiusTopRight" />
+        <attr name="ar_cornerRadiusBottomLeft" />
+        <attr name="ar_cornerRadiusBottomRight" />
+        <attr name="ar_itemBorderWidth" />
+        <attr name="ar_itemBorderColor" />
+        <attr name="ar_hasRipple" />
+        <attr name="ar_rippleSize" />
+        <attr name="ar_rippleVelocity" />
+        <attr name="ar_rippleColor" />
+        <attr name="ar_active" />
+        <attr name="ar_deActiveColor" />
+        <attr name="ar_style" />
+    </declare-styleable>
+    <declare-styleable name="ErisButton" parent="BaseRelativeLayout">
+        <attr name="ar_cornerRadius" />
+        <attr name="ar_cornerRadiusLeft" />
+        <attr name="ar_cornerRadiusTop" />
+        <attr name="ar_cornerRadiusRight" />
+        <attr name="ar_cornerRadiusBottom" />
+        <attr name="ar_cornerRadiusTopLeft" />
+        <attr name="ar_cornerRadiusTopRight" />
+        <attr name="ar_cornerRadiusBottomLeft" />
+        <attr name="ar_cornerRadiusBottomRight" />
+        <attr name="ar_itemBorderWidth" />
+        <attr name="ar_itemBorderColor" />
+        <attr name="ar_hasRipple" />
+        <attr name="ar_rippleSize" />
+        <attr name="ar_rippleVelocity" />
+        <attr name="ar_rippleColor" />
+        <attr name="ar_active" />
+        <attr name="ar_deActiveColor" />
+        <attr name="android:text" />
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="ar_style" />
+    </declare-styleable>
+    <declare-styleable name="ErisAdvanceRecycleView">
+        <attr name="ar_orientation" />
+        <attr name="ar_style" />
+    </declare-styleable>
+    <declare-styleable name="ErisSingleItemRecyclerView" parent="AdvanceRecycleView">
+        <attr name="ar_orientation" />
+        <attr name="ar_style" />
+    </declare-styleable>
+    <declare-styleable name="ErisTimePicker">
+        <attr name="ar_hourBackgroundColor" />
+        <attr name="ar_minuteBackgroundColor" />
+        <attr name="ar_secondBackgroundColor" />
+        <attr name="ar_arrowColor" />
+        <attr name="ar_hourArrowColor" />
+        <attr name="ar_minuteArrowColor" />
+        <attr name="ar_secondArrowColor" />
+        <attr name="ar_itemActiveBorderColor" />
+        <attr name="ar_itemActiveBorderWidth" />
+        <attr name="ar_hourColor" />
+        <attr name="ar_minuteColor" />
+        <attr name="ar_secondColor" />
+        <attr name="ar_timePikerDivider" />
+        <attr name="ar_timePikerDividerColor" />
+        <attr name="ar_timePikerDividerSize" />
+        <attr name="ar_format" />
+        <attr name="ar_hasHour" />
+        <attr name="ar_hasMinute" />
+        <attr name="ar_hasSecond" />
+        <attr name="ar_hourStep" />
+        <attr name="ar_minuteStep" />
+        <attr name="ar_secondStep" />
+        <attr name="ar_divider" />
+        <attr name="ar_style" />
+    </declare-styleable>
+    <declare-styleable name="ErisRollingItemPicker">
+        <attr name="infinite" />
+        <attr name="gradientStartColor" />
+        <attr name="gradientEndColor" />
+    </declare-styleable>
+    <declare-styleable name="ErisCardDatePicker">
+        <attr name="ar_itemBackgroundColor" />
+        <attr name="ar_activeItemBackgroundColor" />
+        <attr name="ar_arrowColor" />
+        <attr name="ar_hourArrowColor" />
+        <attr name="ar_minuteArrowColor" />
+        <attr name="ar_secondArrowColor" />
+        <attr name="ar_itemActiveBorderColor" />
+        <attr name="ar_itemActiveBorderWidth" />
+        <attr name="ar_hourColor" />
+        <attr name="ar_minuteColor" />
+        <attr name="ar_secondColor" />
+        <attr name="ar_timePikerDivider" />
+        <attr name="ar_timePikerDividerColor" />
+        <attr name="ar_timePikerDividerSize" />
+        <attr name="ar_format" />
+        <attr name="ar_yearBackgroundColor" />
+        <attr name="ar_monthBackgroundColor" />
+        <attr name="ar_dayBackgroundColor" />
+        <attr name="ar_activeYearBackgroundColor" />
+        <attr name="ar_activeMonthBackgroundColor" />
+        <attr name="ar_activeDayBackgroundColor" />
+        <attr name="ar_textColor" />
+        <attr name="ar_yearColor" />
+        <attr name="ar_monthColor" />
+        <attr name="ar_dayColor" />
+        <attr name="ar_dayNameColor" />
+        <attr name="ar_activeTextColor" />
+        <attr name="ar_activeYearColor" />
+        <attr name="ar_activeMonthColor" />
+        <attr name="ar_activeDayColor" />
+        <attr name="ar_activeDayNameColor" />
+        <attr name="ar_itemElevation" />
+        <attr name="ar_style" />
+        <attr name="ar_dateGradientStartColor" />
+        <attr name="ar_dateGradientEndColor" />
+        <attr name="ar_timeGradientStartColor" />
+        <attr name="ar_timeGradientEndColor" />
+    </declare-styleable>
+    <declare-styleable name="ErisCardDateTimePicker">
+        <attr name="ar_itemBackgroundColor" />
+        <attr name="ar_activeItemBackgroundColor" />
+        <attr name="ar_arrowColor" />
+        <attr name="ar_hourArrowColor" />
+        <attr name="ar_minuteArrowColor" />
+        <attr name="ar_secondArrowColor" />
+        <attr name="ar_itemActiveBorderColor" />
+        <attr name="ar_itemActiveBorderWidth" />
+        <attr name="ar_hourColor" />
+        <attr name="ar_minuteColor" />
+        <attr name="ar_secondColor" />
+        <attr name="ar_timePikerDivider" />
+        <attr name="ar_timePikerDividerColor" />
+        <attr name="ar_timePikerDividerSize" />
+        <attr name="ar_format" />
+        <attr name="ar_yearBackgroundColor" />
+        <attr name="ar_monthBackgroundColor" />
+        <attr name="ar_dayBackgroundColor" />
+        <attr name="ar_activeYearBackgroundColor" />
+        <attr name="ar_activeMonthBackgroundColor" />
+        <attr name="ar_activeDayBackgroundColor" />
+        <attr name="ar_textColor" />
+        <attr name="ar_yearColor" />
+        <attr name="ar_monthColor" />
+        <attr name="ar_dayColor" />
+        <attr name="ar_dayNameColor" />
+        <attr name="ar_activeTextColor" />
+        <attr name="ar_activeYearColor" />
+        <attr name="ar_activeMonthColor" />
+        <attr name="ar_activeDayColor" />
+        <attr name="ar_activeDayNameColor" />
+        <attr name="ar_hourBackgroundColor" />
+        <attr name="ar_minuteBackgroundColor" />
+        <attr name="ar_secondBackgroundColor" />
+        <attr name="ar_hasHour" />
+        <attr name="ar_hasMinute" />
+        <attr name="ar_hasSecond" />
+        <attr name="ar_hourStep" />
+        <attr name="ar_minuteStep" />
+        <attr name="ar_secondStep" />
+        <attr name="ar_divider" />
+        <attr name="ar_style" />
+        <attr name="ar_dateGradientStartColor" />
+        <attr name="ar_dateGradientEndColor" />
+        <attr name="ar_timeGradientStartColor" />
+        <attr name="ar_timeGradientEndColor" />
+    </declare-styleable>
+
+</resources>
