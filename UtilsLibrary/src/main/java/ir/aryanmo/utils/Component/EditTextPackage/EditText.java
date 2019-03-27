@@ -94,40 +94,40 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
     protected void setCornerRadiusFromAttr(AttributeSet attr) {
         try {
             TypedArray a = getStyledAttributes(attr);
-            int b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_cornerRadius, -1);
+            int b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_cornerRadius, -1);
             if (b != -1) {
                 setCornerRadius(b);
             }
-            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_cornerRadiusLeft, -1);
+            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_cornerRadiusLeft, -1);
 
             if (b != -1) {
                 setCornerRadiusLeft(b);
             }
-            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_cornerRadiusTop, -1);
+            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_cornerRadiusTop, -1);
             if (b != -1) {
                 setCornerRadiusTop(b);
             }
-            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_cornerRadiusRight, -1);
+            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_cornerRadiusRight, -1);
             if (b != -1) {
                 setCornerRadiusRight(b);
             }
-            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_cornerRadiusBottom, -1);
+            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_cornerRadiusBottom, -1);
             if (b != -1) {
                 setCornerRadiusBottom(b);
             }
-            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_cornerRadiusTopLeft, -1);
+            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_cornerRadiusTopLeft, -1);
             if (b != -1) {
                 setCornerRadiusTopLeft(b);
             }
-            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_cornerRadiusTopRight, -1);
+            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_cornerRadiusTopRight, -1);
             if (b != -1) {
                 setCornerRadiusTopRight(b);
             }
-            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_cornerRadiusBottomLeft, -1);
+            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_cornerRadiusBottomLeft, -1);
             if (b != -1) {
                 setCornerRadiusBottomLeft(b);
             }
-            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_cornerRadiusBottomRight, -1);
+            b = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_cornerRadiusBottomRight, -1);
             if (b != -1) {
                 setCornerRadiusBottomRight(b);
             }
@@ -141,13 +141,13 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
     protected void setBorderFromAttr(AttributeSet attr) {
         try {
             TypedArray a = getStyledAttributes(attr);
-            borderWidth = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_itemBorderWidth, -1);
+            borderWidth = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_itemBorderWidth, -1);
             if (borderWidth != -1) {
                 borderWidth = ir.aryanmo.utils.utils.UtilsKt.dpToPx(borderWidth, getResources());
             } else {
-                borderWidth = a.getInt(R.styleable.ArGlobal_ar_itemBorderWidth, -1);
+                borderWidth = a.getInt(R.styleable.ArGlobal_ar_utils_itemBorderWidth, -1);
             }
-            borderColor = a.getColor(R.styleable.ArGlobal_ar_itemBorderColor, -1);
+            borderColor = a.getColor(R.styleable.ArGlobal_ar_utils_itemBorderColor, -1);
             if (borderColor == -1) {
                 borderColor = ir.aryanmo.utils.utils.GetUtilsKt.getAccentColor(getContext());
             }
