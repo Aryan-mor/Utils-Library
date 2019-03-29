@@ -11,11 +11,12 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 
 private val PREFS_FILE_NAME = "AppPreferences"
-    val REQUEST_READ_EXTERNAL_STORAGE_CODE = 11
-    val REQUEST_WRITE_EXTERNAL_STORAGE_CODE = 22
-    val REQUEST_CAMERA_CODE = 33
-    val REQUEST_LOCATION_CODE = 44
-    val REQUEST_VIBRATION_CODE = 55
+    val REQUEST_INTERNET_CODE = 11
+    val REQUEST_READ_EXTERNAL_STORAGE_CODE = 22
+    val REQUEST_WRITE_EXTERNAL_STORAGE_CODE = 33
+    val REQUEST_CAMERA_CODE = 44
+    val REQUEST_LOCATION_CODE = 55
+    val REQUEST_VIBRATION_CODE = 66
 
     fun shouldAskPermission(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
@@ -87,7 +88,17 @@ private val PREFS_FILE_NAME = "AppPreferences"
     }
 
 
-    //ss
+    fun checkInternetPermission(activity: Activity, listener: PermissionAskListener) {
+        checkPermission(activity, Manifest.permission.INTERNET, listener)
+    }
+
+    fun requestInternetPermission(activity: Activity) {
+        requestPermission(activity, Manifest.permission.INTERNET, REQUEST_INTERNET_CODE)
+    }
+
+    fun hasInternetPermission(context: Context): Boolean {
+        return hasPermission(context, Manifest.permission.INTERNET)
+    }
 
     fun checkLocationPermission(activity: Activity, listener: PermissionAskListener) {
         checkPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION, listener)

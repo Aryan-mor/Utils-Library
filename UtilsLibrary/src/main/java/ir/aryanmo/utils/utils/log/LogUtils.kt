@@ -19,7 +19,7 @@ val WARN_MODE = 5
 val WTF_MODE = 6
 var DEFAULT_LOG_MODE = ERROR_MODE
 
-fun log(context: Context?, logMessage: Any, logFlag: String?, logType: Int) {
+fun log(context: Context?, logMessage: Any, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     if (!LOG_VISIBILITY)
         return
     var logMe = if (logMessage is Boolean) "Boolean -> $logMessage" else logMessage
@@ -27,7 +27,7 @@ fun log(context: Context?, logMessage: Any, logFlag: String?, logType: Int) {
     if (context != null) {
         logMe = getString(context, logMe)
     }
-    val logFl: String = logFlag ?: FLAG
+    val logFl: String = logFlag!!
     when (logType) {
         INFO_MODE -> Log.i(logFl, logMe)
         ERROR_MODE -> Log.e(logFl, logMe)
@@ -39,41 +39,18 @@ fun log(context: Context?, logMessage: Any, logFlag: String?, logType: Int) {
     }
 }
 
-fun log(context: Context?, logMessage: Any, logFlag: String?) = log(context, logMessage, logFlag, DEFAULT_LOG_MODE)
+fun log(logMessage: Any, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) =
+    log(null, logMessage, logFlag, logType)
 
-fun log(context: Context?, logMessage: Any, logType: Int) = log(context, logMessage, null, logType)
-
-fun log(context: Context?, logMessage: Any) = log(context, logMessage, null, DEFAULT_LOG_MODE)
-
-fun log(logMessage: Any, logFlag: String?, logType: Int) = log(null, logMessage, logFlag, logType)
-
-fun log(logMessage: Any, logFlag: String?) = log(logMessage, logFlag, DEFAULT_LOG_MODE)
-
-fun log(logMessage: Any, logType: Int) = log(logMessage, null, logType)
-
-fun log(logMessage: Any) = log(logMessage, null, DEFAULT_LOG_MODE)
-
-fun log(key: Any, value: Any, logFlag: String?, logType: Int) {
+fun log(key: Any, value: Any, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     log("key -> $key  ||  value -> $value", logFlag, logType)
 }
 
-fun log(key: Any, value: Any, logFlag: String?) {
-    log("key -> $key  ||  value -> $value", logFlag, DEFAULT_LOG_MODE)
-}
-
-fun log(key: Any, value: Any, logType: Int) {
-    log("key -> $key  ||  value -> $value", null, logType)
-}
-
-fun log(key: Any, value: Any) {
-    log("key -> $key  ||  value -> $value")
-}
-
-fun log(map: Map<Any, Any>?, logFlag: String?, logType: Int) {
+fun log(map: Map<Any, Any>?, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     try {
         if (map == null || map.isEmpty())
             throw Exception("map is null")
-        log("**** logString Start ****", null)
+        log("**** logString Start ****")
         for ((key, value) in map) {
             try {
                 if (value is Boolean) {
@@ -86,23 +63,17 @@ fun log(map: Map<Any, Any>?, logFlag: String?, logType: Int) {
             }
 
         }
-        log("**** logString End ****", null)
+        log("**** logString End ****")
     } catch (e: Exception) {
         logError("LogUtils::log(Map<Any, Any> map)", e)
     }
 }
 
-fun log(map: Map<Any, Any>?, logFlag: String?) = log(map, logFlag, DEFAULT_LOG_MODE)
-
-fun log(map: Map<Any, Any>?, logType: Int) = log(map, null, logType)
-
-fun log(map: Map<Any, Any>?) = log(map, null, DEFAULT_LOG_MODE)
-
-fun log(hashMap: HashMap<Any, Any>?, logFlag: String?, logType: Int) {
+fun log(hashMap: HashMap<Any, Any>?, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     try {
         if (hashMap == null || hashMap.isEmpty())
             throw Exception("map is null")
-        log("**** logString Start ****", null, logType)
+        log("**** logString Start ****", logType = logType)
         for ((key, value) in hashMap) {
             try {
                 if (value is Boolean) {
@@ -115,20 +86,14 @@ fun log(hashMap: HashMap<Any, Any>?, logFlag: String?, logType: Int) {
             }
 
         }
-        log("**** logString End ****", null, logType)
+        log("**** logString End ****", logType = logType)
     } catch (e: Exception) {
         logError("LogUtils::log(HashMap<Any, Any> hashMap)", e)
     }
 
 }
 
-fun log(hashMap: HashMap<Any, Any>?, logFlag: String?) {
-    log(hashMap, logFlag, DEFAULT_LOG_MODE)
-}
-
-fun log(hashMap: HashMap<Any, Any>?) = log(hashMap, null)
-
-fun log(list: List<Any>, logFlag: String?, logType: Int) {
+fun log(list: List<Any>, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     for (s in list) {
         try {
             log(s.toString(), logFlag, logType)
@@ -138,38 +103,22 @@ fun log(list: List<Any>, logFlag: String?, logType: Int) {
     }
 }
 
-fun log(list: List<Any>, logFlag: String?) = log(list, logFlag, DEFAULT_LOG_MODE)
-
-fun log(list: List<Any>, logType: Int) = log(list, null, logType)
-
-fun log(list: List<Any>) = log(list, null)
-
-fun logGson(json: String, logFlag: String?, logType: Int) {
+fun logGson(json: String, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     val gson = Gson()
     val map = gson.fromJson(json, HashMap::class.java)
     log(map, logFlag, logType)
 }
 
-fun logGson(json: String, logFlag: String?) {
-    logGson(json, logFlag, DEFAULT_LOG_MODE)
+fun logError(title: String, message: String = "error message null", logFlag: String = FLAG) {
+    log("$title error || ErrorMessage -> $message", logFlag)
 }
 
-fun logGson(json: String, logType: Int) {
-    logGson(json, null, logType)
+fun logError(title: String, e: Exception, logFlag: String = FLAG) =
+    logError(title, e.message ?: "error message null", logFlag)
+
+fun logNullPointerExceptionError(title: String, message: String = "error message null", logFlag: String = FLAG) {
+    log("$title NullPointerException || ErrorMessage -> $message", logFlag)
 }
 
-fun logGson(json: String) {
-    logGson(json, null, DEFAULT_LOG_MODE)
-}
-
-fun logError(title: String, e: Exception, logFlag: String?) {
-    log("$title error || ErrorMessage -> $e.$message", logFlag)
-}
-
-fun logError(title: String, e: Exception) = logError(title, e, null)
-
-fun logNullPointerExceptionError(title: String, e: Exception, logFlag: String?) {
-    log(title + " NullPointerException || ErrorMessage -> " + e.message, logFlag)
-}
-
-fun logNullPointerExceptionError(title: String, e: Exception) = logNullPointerExceptionError(title, e, null)
+fun logNullPointerExceptionError(title: String, e: Exception, logFlag: String = FLAG) =
+    logNullPointerExceptionError(title, e.message ?: "error message null", logFlag)

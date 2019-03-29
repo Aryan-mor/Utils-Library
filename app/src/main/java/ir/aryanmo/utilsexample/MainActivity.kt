@@ -11,5 +11,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         logE("salam")
+
+        logError("salam","error")
     }
 }
