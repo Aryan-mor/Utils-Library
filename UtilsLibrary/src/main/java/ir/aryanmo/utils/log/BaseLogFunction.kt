@@ -32,11 +32,14 @@ interface BaseLogFunction : Basic, BaseLogDFunction, BaseLogEFunction, BaseLogIF
     fun logError(title: String, e: Exception, logFlag: String = FLAG) =
         ir.aryanmo.utils.utils.log.logError("$activityName::$title", e, logFlag)
 
+    fun logError(title: String, e: Throwable?, logFlag: String = FLAG) =
+        ir.aryanmo.utils.utils.log.logError("$activityName::$title", e, logFlag)
+
 
     fun logNullPointerExceptionError(title: String, message: String = "error message null", logFlag: String = FLAG) =
-        ir.aryanmo.utils.utils.log.logNullPointerExceptionError(title, message, FLAG)
+        ir.aryanmo.utils.utils.log.logNullPointerExceptionError("$activityName::$title", message, FLAG)
 
     fun logNullPointerExceptionError(title: String, e: Exception, logFlag: String = FLAG) =
-        ir.aryanmo.utils.utils.log.logNullPointerExceptionError(title, e, logFlag)
+        ir.aryanmo.utils.utils.log.logNullPointerExceptionError("$activityName::$title", e, logFlag)
 
 }

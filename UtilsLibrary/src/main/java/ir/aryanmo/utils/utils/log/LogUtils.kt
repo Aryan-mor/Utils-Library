@@ -116,6 +116,9 @@ fun logError(title: String, message: String = "error message null", logFlag: Str
 fun logError(title: String, e: Exception, logFlag: String = FLAG) =
     logError(title, e.message ?: "error message null", logFlag)
 
+fun logError(title: String, e: Throwable?, logFlag: String = FLAG) =
+    logError(title, e?.message ?: "error message null", logFlag)
+
 fun logNullPointerExceptionError(title: String, message: String = "error message null", logFlag: String = FLAG) {
     log("$title NullPointerException || ErrorMessage -> $message", logFlag)
 }
