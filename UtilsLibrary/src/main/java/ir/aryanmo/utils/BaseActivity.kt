@@ -21,42 +21,42 @@ open class BaseActivity : AppCompatActivity(), BaseActivityFunction {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (logLifeCycle)
-            logInfo("$activityName : onCreate()","${FLAG}-LifeCycle")
+            logE("$activityName : onCreate()","${FLAG}-LifeCycle")
     }
 
     override fun onStart() {
         super.onStart()
         if (logLifeCycle)
-            logInfo("$activityName : onStart()","${FLAG}-LifeCycle")
+            logE("$activityName : onStart()","${FLAG}-LifeCycle")
     }
 
     override fun onResume() {
         super.onResume()
         if (logLifeCycle)
-            logInfo("$activityName : onResume()","${FLAG}-LifeCycle")
+            logE("$activityName : onResume()","${FLAG}-LifeCycle")
     }
 
     override fun onPause() {
         super.onPause()
         if (logLifeCycle)
-            logInfo("$activityName : onPause()","${FLAG}-LifeCycle")
+            logE("$activityName : onPause()","${FLAG}-LifeCycle")
     }
 
     override fun onStop() {
         super.onStop()
         if (logLifeCycle)
-            logInfo("$activityName : onStop()","${FLAG}-LifeCycle")
+            logE("$activityName : onStop()","${FLAG}-LifeCycle")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         if (logLifeCycle)
-            logInfo("$activityName : onDestroy()","${FLAG}-LifeCycle")
+            logE("$activityName : onDestroy()","${FLAG}-LifeCycle")
     }
 
     override fun onRestart() {
         super.onRestart()
         if (logLifeCycle)
-            logInfo("$activityName : onRestart()","${FLAG}-LifeCycle")
+            logE("$activityName : onRestart()","${FLAG}-LifeCycle")
     }
 }

@@ -311,6 +311,6 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
     }
 
     private void logError(String s, Exception e) {
-        ir.aryanmo.utils.utils.log.LogUtilsKt.logError("SimpleEditText::" + s, e);
+        Log.e("Utils","SimpleEditText::" + s, e);
     }
 }

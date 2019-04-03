@@ -26,66 +26,66 @@ abstract class BaseFragment : Fragment(), BaseActivityFunction {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (logLifeCycle)
-            logInfo("$activityName : onAttach()")
+            logE("$activityName : onAttach()")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (logLifeCycle)
-            logInfo("$activityName : onCreate()", "${FLAG}-LifeCycle")
+            logE("$activityName : onCreate()", "${FLAG}-LifeCycle")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (logLifeCycle)
-            logInfo("$activityName : onCreateView()", "${FLAG}-LifeCycle")
+            logE("$activityName : onCreateView()", "${FLAG}-LifeCycle")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (logLifeCycle)
-            logInfo("$activityName : onViewCreated()", "${FLAG}-LifeCycle")
+            logE("$activityName : onViewCreated()", "${FLAG}-LifeCycle")
     }
 
     override fun onStart() {
         super.onStart()
         if (logLifeCycle)
-            logInfo("$activityName : onStart()", "${FLAG}-LifeCycle")
+            logE("$activityName : onStart()", "${FLAG}-LifeCycle")
     }
 
     override fun onResume() {
         super.onResume()
         if (logLifeCycle)
-            logInfo("$activityName : onResume()", "${FLAG}-LifeCycle")
+            logE("$activityName : onResume()", "${FLAG}-LifeCycle")
     }
 
     override fun onPause() {
         super.onPause()
         if (logLifeCycle)
-            logInfo("$activityName : onPause()", "${FLAG}-LifeCycle")
+            logE("$activityName : onPause()", "${FLAG}-LifeCycle")
     }
 
     override fun onStop() {
         super.onStop()
         if (logLifeCycle)
-            logInfo("$activityName : onStop()", "${FLAG}-LifeCycle")
+            logE("$activityName : onStop()", "${FLAG}-LifeCycle")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         if (logLifeCycle)
-            logInfo("$activityName : onDestroyView()", "${FLAG}-LifeCycle")
+            logE("$activityName : onDestroyView()", "${FLAG}-LifeCycle")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         if (logLifeCycle)
-            logInfo("$activityName : onDestroy()", "${FLAG}-LifeCycle")
+            logE("$activityName : onDestroy()", "${FLAG}-LifeCycle")
     }
 
     override fun onDetach() {
         super.onDetach()
         if (logLifeCycle)
-            logInfo("$activityName : onDetach()", "${FLAG}-LifeCycle")
+            logE("$activityName : onDetach()", "${FLAG}-LifeCycle")
     }
 }

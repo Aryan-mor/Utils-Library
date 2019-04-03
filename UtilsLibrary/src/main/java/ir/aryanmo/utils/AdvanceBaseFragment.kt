@@ -43,12 +43,12 @@ abstract class AdvanceBaseFragment : BaseFragment(){
 
     protected open fun customizeUI(){
         if (logLifeCycle)
-            logInfo("$activityName : customizeUI()", "${FLAG}-LifeCycle")
+            logE("$activityName : customizeUI()", "${FLAG}-LifeCycle")
     }
 
     protected open fun visibleUI(){
         if (logLifeCycle)
-            logInfo("$activityName : visibleUI()", "${FLAG}-LifeCycle")
+            logE("$activityName : visibleUI()", "${FLAG}-LifeCycle")
     }
 
     protected abstract fun inflate(): Int

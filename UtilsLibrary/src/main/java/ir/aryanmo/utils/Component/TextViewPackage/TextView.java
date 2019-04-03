@@ -410,6 +410,6 @@ public class TextView extends android.support.v7.widget.AppCompatTextView {
     }
 
     private void logError(String s, Exception e) {
-        ir.aryanmo.utils.utils.log.LogUtilsKt.logError("TextView::" + s, e);
+        Log.e("Utils","SimpleTextView::" + s, e);
     }
 }
