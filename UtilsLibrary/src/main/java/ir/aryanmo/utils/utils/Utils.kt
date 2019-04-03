@@ -199,8 +199,6 @@ fun isLandscape(context: Context): Boolean {
 fun vibrate(activity: Activity, vibrationEffect: VibrationEffect): Vibrator? {
     return try {
         val v = activity.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
-        if (!hasVibrationPermission(activity))
-            throw Exception("Permission denied")
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             v!!.vibrate(vibrationEffect)
@@ -217,9 +215,6 @@ fun vibrate(activity: Activity, vibrationEffect: VibrationEffect): Vibrator? {
 @SuppressLint("MissingPermission")
 fun vibrate(activity: Activity, milliseconds: Long, amplitude: Int): Vibrator {
     val v = activity.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
-
-    if (!hasVibrationPermission(activity))
-        throw Exception("Permission denied")
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         v!!.vibrate(VibrationEffect.createOneShot(milliseconds, amplitude))
