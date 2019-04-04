@@ -17,7 +17,7 @@ val INFO_MODE = 3
 val VERBOSE_MODE = 4
 val WARN_MODE = 5
 val WTF_MODE = 6
-var DEFAULT_LOG_MODE = ERROR_MODE
+var DEFAULT_LOG_MODE = INFO_MODE
 
 fun log(context: Context?, logMessage: Any, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     if (!LOG_VISIBILITY)

@@ -1,6 +1,8 @@
 package ir.aryanmo.utils
 
 import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import android.support.v7.app.AppCompatActivity
 import kotlin.reflect.KClass
 
@@ -57,4 +59,9 @@ interface BaseIntentFunction : Basic {
     fun intentTo(intent: Intent) {
         return ir.aryanmo.utils.utils.intentTo(appContext!!, intent)
     }
+
+
+    fun makeIntentSetting(): Intent = ir.aryanmo.utils.utils.makeIntentSetting(appContext!!)
+
+    fun intentToSetting(activity: AppCompatActivity)=ir.aryanmo.utils.utils.intentToSetting(activity)
 }

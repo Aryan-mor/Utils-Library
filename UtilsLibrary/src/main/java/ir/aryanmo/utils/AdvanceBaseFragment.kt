@@ -36,7 +36,6 @@ abstract class AdvanceBaseFragment : BaseFragment(){
         return view
     }
 
-
     override fun getView(): View {
         return view
     }
