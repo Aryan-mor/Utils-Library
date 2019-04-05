@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.media.MediaPlayer
 import android.media.MediaRecorder
-import android.os.Environment
 import ir.aryanmo.utils.utils.checkDir
+import ir.aryanmo.utils.utils.log.LOG_ERROR_MODE
+import ir.aryanmo.utils.utils.log.log
 import ir.aryanmo.utils.utils.log.logError
 import java.io.File
+import android.os.ParcelFileDescriptor
+import java.io.IOException
+
 
 class VoiceRecorder(private val context: Context) {
 
@@ -26,7 +30,8 @@ class VoiceRecorder(private val context: Context) {
     }
 
     private lateinit var recorder: MediaRecorder
-    private lateinit var outPutFileDir: String
+    private var outPutPathDir = getDefaultVoiceDir(context)
+    private lateinit var outPutFileName: String
     private var audioSource: Int = 0
     private var outputFormat: Int = 0
     private var audioEncoder: Int = 0
@@ -43,7 +48,7 @@ class VoiceRecorder(private val context: Context) {
         setAudioSource(MediaRecorder.AudioSource.DEFAULT)
         setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
         setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB)
-        setOutputFileDir("${getDefaultVoiceDir(context)}/voice-${Date(format = "yyyy-MM-dd HH:mm:ss")}")
+        setOutputFileDir(getDefaultVoiceDir(context), "voice-${Date().toUTC().timestamp}")
         initialize = false
     }
 
@@ -66,18 +71,20 @@ class VoiceRecorder(private val context: Context) {
         recorder.setAudioEncoder(audioEncoder)
     }
 
-    fun setOutputFileDir(outPutFile: String): Boolean {
-        if (checkDir(outPutFile)) {
-            this.outPutFileDir = outPutFile
-            recorder.setOutputFile(outPutFile)
+    fun setOutputFileDir(
+        outPutPathDir: String = this.outPutPathDir,
+        outPutFileName: String = "voice-${Date().toUTC().timestamp}"
+    ): Boolean {
+        if (checkDir(outPutPathDir)) {
+            this.outPutPathDir = outPutPathDir
+            this.outPutFileName = outPutFileName
+            recorder.setOutputFile(getOutputFileDir())
             return true
         }
         return false
     }
 
-    fun setOutputFileName(outPutFile: String) = setOutputFileDir(outputFileName("${context.packageName}/$outPutFile"))
-
-    fun getOutputFile() = outPutFileDir
+    fun getOutputFileDir() = "$outPutPathDir/$outPutFileName.3gp"
 
     fun startRecorder(): Boolean {
         return try {
@@ -113,7 +120,7 @@ class VoiceRecorder(private val context: Context) {
     }
 
     fun getRecord(): MediaPlayer? {
-        return getRecord(getOutputFile())
+        return getRecord(getOutputFileDir())
     }
 
     fun playRecorder(): Boolean {
@@ -138,10 +145,7 @@ class VoiceRecorder(private val context: Context) {
     }
 
     fun getVoiceList(): Array<out File> {
-        return getVoiceList(outPutFileDir)
+        return getVoiceList(outPutPathDir)
     }
 
-    private fun outputFileName(fileName: String): String {
-        return Environment.getExternalStorageDirectory().absolutePath + "/$fileName.3gp"
-    }
 }

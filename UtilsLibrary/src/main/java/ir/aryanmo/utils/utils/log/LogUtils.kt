@@ -9,13 +9,13 @@ import java.util.*
 
 
 val LOG_VISIBILITY = true
-val DEBUG_MODE = 1
-val ERROR_MODE = 2
-val INFO_MODE = 3
-val VERBOSE_MODE = 4
-val WARN_MODE = 5
-val WTF_MODE = 6
-var DEFAULT_LOG_MODE = INFO_MODE
+val LOG_DEBUG_MODE = 1
+val LOG_ERROR_MODE = 2
+val LOG_INFO_MODE = 3
+val LOG_VERBOSE_MODE = 4
+val LOG_WARN_MODE = 5
+val LOG_WTF_MODE = 6
+var DEFAULT_LOG_MODE = LOG_INFO_MODE
 
 fun log(context: Context?, logMessage: Any, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     if (!LOG_VISIBILITY)
@@ -27,12 +27,12 @@ fun log(context: Context?, logMessage: Any, logFlag: String = FLAG, logType: Int
     }
     val logFl: String = logFlag!!
     when (logType) {
-        INFO_MODE -> Log.i(logFl, logMe)
-        ERROR_MODE -> Log.e(logFl, logMe)
-        DEBUG_MODE -> Log.d(logFl, logMe)
-        VERBOSE_MODE -> Log.v(logFl, logMe)
-        WARN_MODE -> Log.w(logFl, logMe)
-        WTF_MODE -> Log.wtf(logFl, logMe)
+        LOG_INFO_MODE -> Log.i(logFl, logMe)
+        LOG_ERROR_MODE -> Log.e(logFl, logMe)
+        LOG_DEBUG_MODE -> Log.d(logFl, logMe)
+        LOG_VERBOSE_MODE -> Log.v(logFl, logMe)
+        LOG_WARN_MODE -> Log.w(logFl, logMe)
+        LOG_WTF_MODE -> Log.wtf(logFl, logMe)
         else -> Log.i(logFl, logMe)
     }
 }
@@ -108,7 +108,7 @@ fun logGson(json: String, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MOD
 }
 
 fun logError(title: String, message: String = "error message null", logFlag: String = FLAG) {
-    log("$title error || ErrorMessage -> $message", logFlag)
+    log("$title error || ErrorMessage -> $message", logFlag, LOG_ERROR_MODE)
 }
 
 fun logError(title: String, e: Exception, logFlag: String = FLAG) =
