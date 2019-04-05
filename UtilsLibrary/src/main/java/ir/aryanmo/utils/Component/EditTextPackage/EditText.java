@@ -8,10 +8,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
-
 import ir.aryanmo.utils.R;
-
-import static ir.aryanmo.utils.utils.UtilsKt.dpToPx;
 
 public class EditText extends android.support.v7.widget.AppCompatEditText {
 

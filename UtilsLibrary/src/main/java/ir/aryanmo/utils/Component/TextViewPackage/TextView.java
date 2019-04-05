@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
-
 import ir.aryanmo.utils.R;
 
 public class TextView extends android.support.v7.widget.AppCompatTextView {

@@ -1,9 +1,7 @@
 package ir.aryanmo.utils
 
+import android.app.Activity
 import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
-import android.support.v7.app.AppCompatActivity
 import kotlin.reflect.KClass
 
 interface BaseIntentFunction : Basic {
@@ -16,7 +14,7 @@ interface BaseIntentFunction : Basic {
         return ir.aryanmo.utils.utils.makeIntent(appContext!!, cls)
     }
 
-    fun makeIntent(activity: AppCompatActivity): Intent {
+    fun makeIntent(activity: Activity): Intent {
         return ir.aryanmo.utils.utils.makeIntent(appContext!!, activity)
     }
 
@@ -28,7 +26,7 @@ interface BaseIntentFunction : Basic {
         return ir.aryanmo.utils.utils.makeIntent(appContext!!, cls, key, value)
     }
 
-    fun makeIntent(activity: AppCompatActivity, key: Any, value: Any): Intent {
+    fun makeIntent(activity: Activity, key: Any, value: Any): Intent {
         return ir.aryanmo.utils.utils.makeIntent(appContext!!, activity, key, value)
     }
 
@@ -40,7 +38,7 @@ interface BaseIntentFunction : Basic {
         return ir.aryanmo.utils.utils.intentTo(appContext!!, cls)
     }
 
-    fun intentTo(activity: AppCompatActivity) {
+    fun intentTo(activity: Activity) {
         return ir.aryanmo.utils.utils.intentTo(appContext!!, activity)
     }
 
@@ -52,7 +50,7 @@ interface BaseIntentFunction : Basic {
         return ir.aryanmo.utils.utils.intentTo(appContext!!, cls, key, value)
     }
 
-    fun intentTo(activity: AppCompatActivity, key: Any, value: Any) {
+    fun intentTo(activity: Activity, key: Any, value: Any) {
         return ir.aryanmo.utils.utils.intentTo(appContext!!, activity, key, value)
     }
 
@@ -63,5 +61,5 @@ interface BaseIntentFunction : Basic {
 
     fun makeIntentSetting(): Intent = ir.aryanmo.utils.utils.makeIntentSetting(appContext!!)
 
-    fun intentToSetting(activity: AppCompatActivity)=ir.aryanmo.utils.utils.intentToSetting(activity)
+    fun intentToSetting(activity: Activity)=ir.aryanmo.utils.utils.intentToSetting(activity)
 }

@@ -1,9 +1,8 @@
 package ir.aryanmo.utils.utils
 
 import android.util.Log
-import java.text.DateFormatSymbols
-
 import ir.aryanmo.utils.utils.utilsClass.Date
+import java.text.DateFormatSymbols
 
 val liveTimeStamp: Long
     get() = Date().timestamp

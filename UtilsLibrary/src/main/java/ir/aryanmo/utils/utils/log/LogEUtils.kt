@@ -1,11 +1,8 @@
 package ir.aryanmo.utils.utils.log
 
 import android.content.Context
-import android.util.Log
-import com.google.gson.Gson
 import ir.aryanmo.utils.utils.FLAG
-import ir.aryanmo.utils.utils.getString
-import java.util.HashMap
+import java.util.*
 
 fun logE(context: Context?, logMessage: Any, logFlag: String = FLAG) = log(context,logMessage,logFlag, ERROR_MODE)
 fun logE(logMessage: Any, logFlag: String = FLAG) = log(logMessage, logFlag, ERROR_MODE)

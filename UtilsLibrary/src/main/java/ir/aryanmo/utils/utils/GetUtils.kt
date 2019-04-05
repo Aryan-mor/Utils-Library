@@ -10,11 +10,9 @@ import android.support.annotation.StringRes
 import android.support.v4.content.ContextCompat
 import android.text.Spanned
 import android.util.TypedValue
-
-import java.util.regex.Pattern
-
 import ir.aryanmo.utils.R
 import ir.aryanmo.utils.utils.log.logError
+import java.util.regex.Pattern
 
 private fun getString(context: Context, s: String, html: Boolean = false): String {
     var s = s

@@ -3,7 +3,6 @@ package ir.aryanmo.utils.utils
 import android.content.Context
 import com.google.gson.Gson
 import ir.aryanmo.utils.utils.log.logError
-import java.lang.Exception
 
 
 fun addPref(context: Context, key: String, value: Any): Boolean {

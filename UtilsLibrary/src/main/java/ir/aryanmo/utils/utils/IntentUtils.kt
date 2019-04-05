@@ -1,14 +1,13 @@
 package ir.aryanmo.utils.utils
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Parcelable
 import android.provider.Settings
-import android.support.v7.app.AppCompatActivity
 import ir.aryanmo.utils.utils.log.logError
 import java.io.Serializable
-import java.lang.Exception
 import java.math.BigInteger
 import kotlin.reflect.KClass
 
@@ -20,7 +19,7 @@ fun makeIntent(context: Context, cls: KClass<*>): Intent {
     return makeIntent(context, cls.java)
 }
 
-fun makeIntent(context: Context, activity: AppCompatActivity): Intent {
+fun makeIntent(context: Context, activity: Activity): Intent {
     return makeIntent(context, activity::class.java)
 }
 
@@ -64,7 +63,7 @@ fun makeIntent(context: Context, cls: KClass<*>, key: Any, value: Any): Intent {
     return makeIntent(context, cls.java, key, value)
 }
 
-fun makeIntent(context: Context, activity: AppCompatActivity, key: Any, value: Any): Intent {
+fun makeIntent(context: Context, activity: Activity, key: Any, value: Any): Intent {
     return makeIntent(context, activity::class.java, key, value)
 }
 
@@ -76,7 +75,7 @@ fun intentTo(context: Context, cls: KClass<*>) {
     return intentTo(context, cls.java)
 }
 
-fun intentTo(context: Context, activity: AppCompatActivity) {
+fun intentTo(context: Context, activity: Activity) {
     return intentTo(context, activity::class.java)
 }
 
@@ -88,7 +87,7 @@ fun intentTo(context: Context, cls: KClass<*>, key: Any, value: Any) {
     return intentTo(context, cls.java, key, value)
 }
 
-fun intentTo(context: Context, activity: AppCompatActivity, key: Any, value: Any) {
+fun intentTo(context: Context, activity: Activity, key: Any, value: Any) {
     return intentTo(context, activity::class.java, key, value)
 }
 
@@ -104,7 +103,7 @@ fun makeIntentSetting(context: Context): Intent {
     return intent
 }
 
-fun intentToSetting(activity: AppCompatActivity) {
+fun intentToSetting(activity: Activity) {
     activity.startActivity(makeIntentSetting(activity))
 }
 

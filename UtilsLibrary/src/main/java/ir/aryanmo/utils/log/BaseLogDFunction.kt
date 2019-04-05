@@ -2,7 +2,6 @@ package ir.aryanmo.utils.log
 
 import ir.aryanmo.utils.Basic
 import ir.aryanmo.utils.utils.FLAG
-import ir.aryanmo.utils.utils.log.INFO_MODE
 
 
 interface BaseLogDFunction : Basic {

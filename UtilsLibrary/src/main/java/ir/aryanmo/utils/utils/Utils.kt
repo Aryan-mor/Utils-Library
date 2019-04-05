@@ -5,22 +5,20 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.text.Html
-import android.text.Spanned
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-
-import java.util.HashMap
-
 import android.content.res.Resources
+import android.net.Uri
 import android.os.Build
-import android.util.TypedValue
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.text.Html
+import android.text.Spanned
+import android.util.TypedValue
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import ir.aryanmo.utils.R
 import ir.aryanmo.utils.utils.log.logError
 import ir.aryanmo.utils.utils.log.logNullPointerExceptionError
+import java.util.*
 
 
 val sdkApiLevel: Int

@@ -3,6 +3,7 @@ package ir.aryanmo.utilsexample
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import ir.aryanmo.utils.BaseActivity
+import ir.aryanmo.utils.utils.checkDir
 
 class MainActivity : BaseActivity() {
 

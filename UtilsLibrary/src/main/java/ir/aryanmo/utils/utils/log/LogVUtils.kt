@@ -2,7 +2,7 @@ package ir.aryanmo.utils.utils.log
 
 import android.content.Context
 import ir.aryanmo.utils.utils.FLAG
-import java.util.HashMap
+import java.util.*
 
 
 fun logV(context: Context?, logMessage: Any, logFlag: String = FLAG) = log(context,logMessage,logFlag, VERBOSE_MODE)

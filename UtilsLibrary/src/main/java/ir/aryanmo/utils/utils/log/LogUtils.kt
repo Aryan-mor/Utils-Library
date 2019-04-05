@@ -1,13 +1,11 @@
 package ir.aryanmo.utils.utils.log
 
 import android.content.Context
-import android.support.v7.appcompat.R.id.message
 import android.util.Log
 import com.google.gson.Gson
 import ir.aryanmo.utils.utils.FLAG
 import ir.aryanmo.utils.utils.getString
-
-import java.util.HashMap
+import java.util.*
 
 
 val LOG_VISIBILITY = true

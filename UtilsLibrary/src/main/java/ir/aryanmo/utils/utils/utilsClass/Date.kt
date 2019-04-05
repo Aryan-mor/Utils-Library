@@ -2,14 +2,13 @@ package ir.aryanmo.utils.utils.utilsClass
 
 import android.util.Log
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.TimeZone
+import java.util.*
 
 
 class Date {
     private var timeZoneId: String? = null
     var timestamp: Long = 0
-    private var format = "yyyy-MM-dd HH:mm"
+    private var format = FORMAT
 
     val timezone: TimeZone
         get() = TimeZone.getTimeZone(timeZoneId)
@@ -97,38 +96,12 @@ class Date {
     val isDateTime: Boolean
         get() = isDate && isTime
 
-    constructor() {
-        init(java.util.Date().time, TimeZone.getDefault())
-    }
-
-    constructor(date: String) {
-        init(stringToTimestamp(date, format), TimeZone.getDefault())
-    }
-
-    constructor(date: String, format: String) {
+    constructor(date: String, format: String = FORMAT, timeZone: TimeZone = TimeZone.getDefault()) {
         this.format = format
-        init(stringToTimestamp(date, format), TimeZone.getDefault())
+        init(stringToTimestamp(date, format), timeZone)
     }
 
-    constructor(date: String, format: String, timeZone: TimeZone) {
-        this.format = format
-        init(stringToTimestamp(date, format, timeZone), timeZone)
-    }
-
-    constructor(timestamp: Long) {
-        init(timestamp, TimeZone.getDefault())
-    }
-
-    constructor(timestamp: Long, timeZone: TimeZone) {
-        init(timestamp, timeZone)
-    }
-
-    constructor(timestamp: Long, format: String) {
-        this.format = format
-        init(timestamp, TimeZone.getDefault())
-    }
-
-    constructor(timestamp: Long, format: String, timeZone: TimeZone) {
+    constructor(timestamp: Long = java.util.Date().time, format: String = FORMAT, timeZone: TimeZone = TimeZone.getDefault()) {
         this.format = format
         init(timestamp, timeZone)
     }
@@ -157,26 +130,32 @@ class Date {
     }
 
     //Functions
+
     override fun toString(): String {
-        try {
-            return format(format)
+        return try {
+            format(format)
         } catch (e: Exception) {
             logError("Date::toString", e)
-            return ""
+            ""
+        }
+    }
+
+    fun toString(format: String): String {
+        return try {
+            format(format)
+        } catch (e: Exception) {
+            logError("Date::toString", e)
+            ""
         }
 
     }
 
 
-    fun format(format: String): String {
-        return format(format, getTimeZone())
-    }
-    
-    fun getTimeZone() :TimeZone{
+    fun getTimeZone(): TimeZone {
         return TimeZone.getTimeZone(timeZoneId)
     }
 
-    fun format(format: String, timezone: TimeZone): String {
+    fun format(format: String, timezone: TimeZone = getTimeZone()): String {
         return try {
             val calendar = Calendar.getInstance(timezone)
             calendar.time = date
@@ -188,7 +167,6 @@ class Date {
             logError("format(String format, TimeZone timeZone)", e)
             ""
         }
-
     }
 
     fun changeTimezone(timeZone: TimeZone): Date {
@@ -284,16 +262,16 @@ class Date {
     }
 
     private fun logError(s: String, e: Exception) {
-        Log.e("UtilsLibrary","Date::$s  ||  error -> ${e.message})")
+        Log.e("UtilsLibrary", "Date::$s  ||  error -> ${e.message})")
 
     }
 
 
     companion object {
-        private var format = "yyyy-MM-dd HH:mm"
+        private var FORMAT = "yyyy-MM-dd HH:mm"
 
         fun fromUTC(date: String): Date {
-            return Date(date, format, TimeZone.getTimeZone("UTC"))
+            return Date(date, FORMAT, TimeZone.getTimeZone("UTC"))
         }
 
         fun fromUTC(date: String, format: String): Date {
