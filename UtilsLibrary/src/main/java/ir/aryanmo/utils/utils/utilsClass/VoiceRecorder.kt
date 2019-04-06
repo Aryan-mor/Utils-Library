@@ -5,12 +5,8 @@ import android.content.Context
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import ir.aryanmo.utils.utils.checkDir
-import ir.aryanmo.utils.utils.log.LOG_ERROR_MODE
-import ir.aryanmo.utils.utils.log.log
 import ir.aryanmo.utils.utils.log.logError
 import java.io.File
-import android.os.ParcelFileDescriptor
-import java.io.IOException
 
 
 class VoiceRecorder(private val context: Context) {
@@ -25,7 +21,19 @@ class VoiceRecorder(private val context: Context) {
         }
 
         fun getVoiceList(path: String): Array<out File> {
-            return File(path).listFiles()
+            if (checkDir(path)) {
+                return File(path).listFiles()
+            }
+            return arrayOf()
+        }
+
+
+        fun removeVoiceList(context: Context): Boolean {
+            return removeVoiceList(getDefaultVoiceDir(context))
+        }
+
+        fun removeVoiceList(path: String): Boolean {
+            return File(path).delete()
         }
     }
 
@@ -84,7 +92,9 @@ class VoiceRecorder(private val context: Context) {
         return false
     }
 
-    fun getOutputFileDir() = "$outPutPathDir/$outPutFileName.3gp"
+    fun getOutputFileDir() = "${getOutputPathDir()}/${getOutputFileName()}.3gp"
+    fun getOutputPathDir() = outPutPathDir
+    fun getOutputFileName() = outPutFileName
 
     fun startRecorder(): Boolean {
         return try {
@@ -146,6 +156,10 @@ class VoiceRecorder(private val context: Context) {
 
     fun getVoiceList(): Array<out File> {
         return getVoiceList(outPutPathDir)
+    }
+
+    fun removeVoiceList(): Boolean {
+        return removeVoiceList(outPutPathDir)
     }
 
 }

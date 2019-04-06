@@ -24,6 +24,10 @@ interface BaseFunction : BaseLogFunction, BaseGetFunction, BaseIntentFunction, B
         return ir.aryanmo.utils.utils.isSmallScreen(appContext!!)
     }
 
+    fun isTablet(): Boolean {
+        return isLargeScreen() || isXLargeScreen()
+    }
+
     fun isPortrait(): Boolean {
         return ir.aryanmo.utils.utils.isPortrait(appContext!!)
     }
