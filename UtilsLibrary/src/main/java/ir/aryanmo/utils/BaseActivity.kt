@@ -4,14 +4,16 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.ColorRes
-import android.support.annotation.RequiresApi
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
 import ir.aryanmo.utils.utils.FLAG
 
-open class BaseActivity : AppCompatActivity(), BaseActivityFunction {
+
+
+open class BaseActivity(private val fullScreen:Boolean = false) : AppCompatActivity(), BaseActivityFunction {
 
     override var appContext: Context? = null
         get() = this
@@ -24,66 +26,90 @@ open class BaseActivity : AppCompatActivity(), BaseActivityFunction {
 
     override var logLifeCycle: Boolean = false
 
-    private var normalScreen:Boolean= true
+    protected var normalScreen: Boolean = true
+
+    protected var fullScreenInitialize: Boolean = false
+
+    @ColorRes protected var statusBarColor = android.R.color.transparent
+    set(value) {
+        field = value
+        onWindowFocusChanged(true)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (logLifeCycle)
-            logE("$activityName : onCreate()","${FLAG}-LifeCycle")
+            log("$activityName : onCreate()", "$FLAG-LifeCycle")
+
+        if(fullScreen){
+            fullScreen()
+        }
     }
 
     override fun onStart() {
         super.onStart()
         if (logLifeCycle)
-            logE("$activityName : onStart()","${FLAG}-LifeCycle")
+            log("$activityName : onStart()", "$FLAG-LifeCycle")
     }
 
     override fun onResume() {
         super.onResume()
         if (logLifeCycle)
-            logE("$activityName : onResume()","${FLAG}-LifeCycle")
+            log("$activityName : onResume()", "$FLAG-LifeCycle")
     }
 
     override fun onPause() {
         super.onPause()
         if (logLifeCycle)
-            logE("$activityName : onPause()","${FLAG}-LifeCycle")
+            log("$activityName : onPause()", "$FLAG-LifeCycle")
     }
 
     override fun onStop() {
         super.onStop()
         if (logLifeCycle)
-            logE("$activityName : onStop()","${FLAG}-LifeCycle")
+            log("$activityName : onStop()", "$FLAG-LifeCycle")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         if (logLifeCycle)
-            logE("$activityName : onDestroy()","${FLAG}-LifeCycle")
+            log("$activityName : onDestroy()", "$FLAG-LifeCycle")
     }
 
     override fun onRestart() {
         super.onRestart()
         if (logLifeCycle)
-            logE("$activityName : onRestart()","${FLAG}-LifeCycle")
+            log("$activityName : onRestart()", "$FLAG-LifeCycle")
     }
 
-
-
-    protected fun fullScreen(@ColorRes statusBarColor:Int=android.R.color.transparent) {
+    private fun fullScreen() {
         try {
             normalScreen = false
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                val window = this.window
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                window.statusBarColor = ContextCompat.getColor(this, statusBarColor)
+
+            when {
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT -> window.decorView.systemUiVisibility =
+                    (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN -> window.decorView.systemUiVisibility =
+                    (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN)
+                else -> window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            }
+
+            if (!fullScreenInitialize) {
+                fullScreenInitialize = true
+                requestWindowFeature(Window.FEATURE_NO_TITLE)
+                this.window.setFlags(
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN
+                )
             }
         } catch (e: Exception) {
             logError("fullScreen", e)
@@ -91,15 +117,25 @@ open class BaseActivity : AppCompatActivity(), BaseActivityFunction {
 
     }
 
-    protected fun normalScreen(@ColorRes statusBarColor:Int=android.R.color.transparent) {
+    private fun normalScreen() {
         try {
             normalScreen = true
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+
+            when {
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ->
+                    window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN ->
+                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 val window = this.window
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
                 window.statusBarColor = ContextCompat.getColor(this, statusBarColor)
             }
+
         } catch (e: Exception) {
             logError("normalScreen", e)
         }
@@ -113,7 +149,7 @@ open class BaseActivity : AppCompatActivity(), BaseActivityFunction {
         return !isNormalScreen()
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+    //    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         try {

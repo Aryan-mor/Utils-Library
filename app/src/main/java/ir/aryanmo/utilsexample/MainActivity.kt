@@ -11,12 +11,14 @@ import ir.aryanmo.utils.utils.log.LOG_ERROR_MODE
 import ir.aryanmo.utils.utils.utilsClass.VoiceRecorder
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(true) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         DEFAULT_LOG_MODE = LOG_ERROR_MODE
+
+        statusBarColor = android.R.color.holo_red_light
 
         val recorder = VoiceRecorder(this)
 
