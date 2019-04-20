@@ -12,7 +12,7 @@ abstract class AdvanceBaseFragment : BaseFragment(){
     private lateinit var view: View
 
     fun AdvanceBaseFragment(s: String) {
-        activityName = s
+        TAG = s
     }
 
     override fun setMenuVisibility(visible: Boolean) {
@@ -42,12 +42,12 @@ abstract class AdvanceBaseFragment : BaseFragment(){
 
     protected open fun customizeUI(){
         if (logLifeCycle)
-            logE("$activityName : customizeUI()", "${FLAG}-LifeCycle")
+            logE("$TAG : customizeUI()", "${FLAG}-LifeCycle")
     }
 
     protected open fun visibleUI(){
         if (logLifeCycle)
-            logE("$activityName : visibleUI()", "${FLAG}-LifeCycle")
+            logE("$TAG : visibleUI()", "${FLAG}-LifeCycle")
     }
 
     protected abstract fun inflate(): Int

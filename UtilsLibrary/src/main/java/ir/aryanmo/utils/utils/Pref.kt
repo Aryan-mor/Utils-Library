@@ -15,7 +15,7 @@ fun addPref(context: Context, key: String, value: Any): Boolean {
         is Long -> pr.edit().putLong(key, value).apply()
         else -> {
             try {
-                pr.edit().putString(key, Gson().toJson(value)).commit()
+                pr.edit().putString(key, toJson(value)).commit()
             } catch (e: Exception) {
                 return false
             }
@@ -53,11 +53,7 @@ fun <T> getPref(context: Context, key: String, classOf: Class<T>): T? {
     try {
         val s = getPrefString(context, key, "")
         if (s != "") {
-            return try {
-                Gson().fromJson<T>(s, classOf)!!
-            } catch (e: Exception) {
-                s as T
-            }
+            return fromJson(s, classOf)
         }
 
         val i = getPrefInt(context, key, -1)

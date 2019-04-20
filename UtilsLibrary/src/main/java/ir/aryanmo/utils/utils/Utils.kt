@@ -92,7 +92,7 @@ fun closeApp(activity: Activity) {
 
 }
 
-fun closeApp() {
+private fun closeApp() {
     try {
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_HOME)
@@ -130,6 +130,16 @@ fun delay(activity: Activity, duration: Int, runnable: Runnable?) {
         if (runnable != null)
             activity.runOnUiThread(runnable)
     }).start()
+}
+
+fun delay(duration: Long) {
+    Thread(Runnable {
+        try {
+            Thread.sleep(duration)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+    })
 }
 
 fun dpTOInt(context: Context, f: Float): Int {

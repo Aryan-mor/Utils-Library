@@ -27,19 +27,19 @@ interface BaseLogFunction : Basic, BaseLogDFunction, BaseLogEFunction, BaseLogIF
         ir.aryanmo.utils.utils.log.logGson(json, logFlag, logType)
 
     fun logError(title: String, message: String = "error message null", logFlag: String = FLAG) =
-        ir.aryanmo.utils.utils.log.logError("$activityName::$title", message, logFlag)
+        ir.aryanmo.utils.utils.log.logError("$TAG::$title", message, logFlag)
 
     fun logError(title: String, e: Exception, logFlag: String = FLAG) =
-        ir.aryanmo.utils.utils.log.logError("$activityName::$title", e, logFlag)
+        ir.aryanmo.utils.utils.log.logError("$TAG::$title", e, logFlag)
 
     fun logError(title: String, e: Throwable?, logFlag: String = FLAG) =
-        ir.aryanmo.utils.utils.log.logError("$activityName::$title", e, logFlag)
+        ir.aryanmo.utils.utils.log.logError("$TAG::$title", e, logFlag)
 
 
     fun logNullPointerExceptionError(title: String, message: String = "error message null", logFlag: String = FLAG) =
-        ir.aryanmo.utils.utils.log.logNullPointerExceptionError("$activityName::$title", message, FLAG)
+        ir.aryanmo.utils.utils.log.logNullPointerExceptionError("$TAG::$title", message, FLAG)
 
     fun logNullPointerExceptionError(title: String, e: Exception, logFlag: String = FLAG) =
-        ir.aryanmo.utils.utils.log.logNullPointerExceptionError("$activityName::$title", e, logFlag)
+        ir.aryanmo.utils.utils.log.logNullPointerExceptionError("$TAG::$title", e, logFlag)
 
 }

@@ -21,8 +21,7 @@ open class BaseActivity(private val fullScreen:Boolean = false) : AppCompatActiv
     override var appActivity: AppCompatActivity? = null
         get() = this
 
-    override var activityName: String = ""
-        get() = this.javaClass.simpleName
+    override var TAG: String = this::class.java.simpleName
 
     override var logLifeCycle: Boolean = false
 
@@ -39,7 +38,7 @@ open class BaseActivity(private val fullScreen:Boolean = false) : AppCompatActiv
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (logLifeCycle)
-            log("$activityName : onCreate()", "$FLAG-LifeCycle")
+            log("$TAG : onCreate()", "$FLAG-LifeCycle")
 
         if(fullScreen){
             fullScreen()
@@ -49,37 +48,37 @@ open class BaseActivity(private val fullScreen:Boolean = false) : AppCompatActiv
     override fun onStart() {
         super.onStart()
         if (logLifeCycle)
-            log("$activityName : onStart()", "$FLAG-LifeCycle")
+            log("$TAG : onStart()", "$FLAG-LifeCycle")
     }
 
     override fun onResume() {
         super.onResume()
         if (logLifeCycle)
-            log("$activityName : onResume()", "$FLAG-LifeCycle")
+            log("$TAG : onResume()", "$FLAG-LifeCycle")
     }
 
     override fun onPause() {
         super.onPause()
         if (logLifeCycle)
-            log("$activityName : onPause()", "$FLAG-LifeCycle")
+            log("$TAG : onPause()", "$FLAG-LifeCycle")
     }
 
     override fun onStop() {
         super.onStop()
         if (logLifeCycle)
-            log("$activityName : onStop()", "$FLAG-LifeCycle")
+            log("$TAG : onStop()", "$FLAG-LifeCycle")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         if (logLifeCycle)
-            log("$activityName : onDestroy()", "$FLAG-LifeCycle")
+            log("$TAG : onDestroy()", "$FLAG-LifeCycle")
     }
 
     override fun onRestart() {
         super.onRestart()
         if (logLifeCycle)
-            log("$activityName : onRestart()", "$FLAG-LifeCycle")
+            log("$TAG : onRestart()", "$FLAG-LifeCycle")
     }
 
     private fun fullScreen() {
