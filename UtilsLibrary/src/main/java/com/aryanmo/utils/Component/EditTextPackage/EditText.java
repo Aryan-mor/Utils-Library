@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import com.aryanmo.utils.R;
 
 public class EditText extends android.support.v7.widget.AppCompatEditText {
@@ -38,8 +39,8 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
 
     protected void setDefaultProperties() {
         // Min size
-        setMinimumHeight(com.aryanmo.utils.utils.UtilsKt.dpToPx(minHeight, getResources()));
-        setMinimumWidth(com.aryanmo.utils.utils.UtilsKt.dpToPx(minWidth, getResources()));
+        setMinimumHeight(dpToPx(minHeight));
+        setMinimumWidth(dpToPx(minWidth));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             setBackground(new GradientDrawable());
         }
@@ -140,7 +141,7 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
             TypedArray a = getStyledAttributes(attr);
             borderWidth = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_itemBorderWidth, -1);
             if (borderWidth != -1) {
-                borderWidth = com.aryanmo.utils.utils.UtilsKt.dpToPx(borderWidth, getResources());
+                borderWidth = dpToPx(borderWidth);
             } else {
                 borderWidth = a.getInt(R.styleable.ArGlobal_ar_utils_itemBorderWidth, -1);
             }
@@ -308,6 +309,10 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
     }
 
     private void logError(String s, Exception e) {
-        Log.e("Utils","SimpleEditText::" + s, e);
+        Log.e("Utils", "SimpleEditText::" + s, e);
+    }
+
+    private int dpToPx(float dp) {
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics()));
     }
 }

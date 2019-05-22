@@ -22,7 +22,7 @@ fun log(context: Context?, logMessage: Any, logFlag: String = FLAG, logType: Int
     var logMe = if (logMessage is Boolean) "Boolean -> $logMessage" else logMessage
     logMe = logMe.toString()
     if (context != null) {
-        logMe = getString(context, logMe)
+        logMe = context.getString(logMe)
     }
     val logFl: String = logFlag
     when (logType) {

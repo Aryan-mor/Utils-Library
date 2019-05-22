@@ -3,22 +3,16 @@ package com.aryanmo.utils
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.aryanmo.utils.utils.FLAG
 import com.aryanmo.utils.utils.log.logE
 
-abstract class BaseFragment : Fragment(), BaseActivityFunction {
+abstract class BaseFragment : Fragment() {
 
-    override var TAG: String = this::class.java.simpleName
-
-    override var appContext: Context? = null
-        get() = context
-    override var appActivity: AppCompatActivity? = null
-        get() = activity as BaseActivity
-    override var logLifeCycle: Boolean = false
+    var TAG: String = this::class.java.simpleName
+    var logLifeCycle: Boolean = false
 
     fun fragmentTag(s: String) {
         TAG = s

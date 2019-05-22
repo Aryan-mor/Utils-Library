@@ -9,6 +9,6 @@ fun setFlag(flag: String) {
     FLAG = flag
 }
 
-fun getResources(context: Context): Resources {
-    return context.resources
+fun Context.getResources(): Resources {
+    return this.resources
 }

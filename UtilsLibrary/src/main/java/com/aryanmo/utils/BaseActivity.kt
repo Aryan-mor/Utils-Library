@@ -1,6 +1,5 @@
 package com.aryanmo.utils
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.ColorRes
@@ -14,34 +13,29 @@ import com.aryanmo.utils.utils.log.log
 import com.aryanmo.utils.utils.log.logError
 
 
-open class BaseActivity(private val fullScreen:Boolean = false) : AppCompatActivity(), BaseActivityFunction {
+open class BaseActivity(private val fullScreen: Boolean = false) : AppCompatActivity() {
 
-    override var appContext: Context? = null
-        get() = this
+    var TAG: String = this::class.java.simpleName
 
-    override var appActivity: AppCompatActivity? = null
-        get() = this
-
-    override var TAG: String = this::class.java.simpleName
-
-    override var logLifeCycle: Boolean = false
+    var logLifeCycle: Boolean = false
 
     protected var normalScreen: Boolean = true
 
     protected var fullScreenInitialize: Boolean = false
 
-    @ColorRes protected var statusBarColor = android.R.color.transparent
-    set(value) {
-        field = value
-        onWindowFocusChanged(true)
-    }
+    @ColorRes
+    protected var statusBarColor = android.R.color.transparent
+        set(value) {
+            field = value
+            onWindowFocusChanged(true)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (logLifeCycle)
             log("$TAG : onCreate()", "$FLAG-LifeCycle")
 
-        if(fullScreen){
+        if (fullScreen) {
             fullScreen()
         }
     }
@@ -141,7 +135,7 @@ open class BaseActivity(private val fullScreen:Boolean = false) : AppCompatActiv
         }
     }
 
-    override fun isNormalScreen(): Boolean {
+    fun isNormalScreen(): Boolean {
         return normalScreen
     }
 

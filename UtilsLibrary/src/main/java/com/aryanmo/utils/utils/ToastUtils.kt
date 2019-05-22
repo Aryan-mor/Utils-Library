@@ -5,26 +5,18 @@ import android.support.annotation.StringRes
 import android.widget.Toast
 
 
-    fun toast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT): Toast {
-        return Toast.makeText(context, getString(context, message), duration)
-    }
+fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT): Toast {
+    return Toast.makeText(this, getString(message), duration)
+}
 
-    fun toast(context: Context, @StringRes message: Int, duration: Int = Toast.LENGTH_SHORT): Toast {
-        return toast(context,getString(context, message), duration)
-    }
+fun Context.toast(@StringRes message: Int, duration: Int = Toast.LENGTH_SHORT): Toast {
+    return this.toast(getString( message), duration)
+}
 
-    fun shortToast(context: Context, message: String): Toast {
-        return toast(context, message, Toast.LENGTH_SHORT)
-    }
+fun Context.longToast(message: String): Toast {
+    return this.toast(message, Toast.LENGTH_LONG)
+}
 
-    fun shortToast(context: Context, @StringRes message: Int): Toast {
-        return shortToast(context,getString(context, message))
-    }
-
-    fun longToast(context: Context, message: String): Toast {
-        return toast(context, message, Toast.LENGTH_LONG)
-    }
-
-    fun longToast(context: Context, @StringRes message: Int): Toast {
-        return longToast(context,getString(context, message))
-    }
+fun Context.longToast(@StringRes message: Int): Toast {
+    return this.longToast(getString( message))
+}

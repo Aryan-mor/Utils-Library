@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
@@ -49,8 +50,8 @@ public class TextView extends android.support.v7.widget.AppCompatTextView {
 
     protected void setDefaultProperties() {
         // Min size
-        setMinimumHeight(com.aryanmo.utils.utils.UtilsKt.dpToPx(minHeight, getResources()));
-        setMinimumWidth(com.aryanmo.utils.utils.UtilsKt.dpToPx(minWidth, getResources()));
+        setMinimumHeight(dpToPx(minHeight));
+        setMinimumWidth(dpToPx(minWidth));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             setBackground(new GradientDrawable());
         }
@@ -145,7 +146,7 @@ public class TextView extends android.support.v7.widget.AppCompatTextView {
         TypedArray a = getStyledAttributes(attr);
         borderWidth = a.getDimensionPixelSize(R.styleable.ArGlobal_ar_utils_itemBorderWidth, -1);
         if (borderWidth != -1) {
-            borderWidth = com.aryanmo.utils.utils.UtilsKt.dpToPx(borderWidth, getResources());
+            borderWidth = dpToPx(borderWidth);
         } else {
             borderWidth = a.getInt(R.styleable.ArGlobal_ar_utils_itemBorderWidth, -1);
         }
@@ -410,5 +411,9 @@ public class TextView extends android.support.v7.widget.AppCompatTextView {
 
     private void logError(String s, Exception e) {
         Log.e("Utils","SimpleTextView::" + s, e);
+    }
+
+    private int dpToPx(float dp) {
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics()));
     }
 }

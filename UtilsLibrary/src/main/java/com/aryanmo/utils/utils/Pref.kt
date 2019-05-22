@@ -4,8 +4,8 @@ import android.content.Context
 import com.aryanmo.utils.utils.log.logError
 
 
-fun addPref(context: Context, key: String, value: Any): Boolean {
-    val pr = SecurePreferences(context)
+fun Context.addPref(key: String, value: Any): Boolean {
+    val pr = SecurePreferences(this)
     when (value) {
         is String -> pr.edit().putString(key, value).apply()
         is Boolean -> pr.edit().putBoolean(key, value).apply()
@@ -23,50 +23,50 @@ fun addPref(context: Context, key: String, value: Any): Boolean {
     return true
 }
 
-fun getPrefBoolean(context: Context, key: String, defaultValue: Boolean): Boolean {
-    val pr = SecurePreferences(context)
+fun Context.getPrefBoolean(key: String, defaultValue: Boolean): Boolean {
+    val pr = SecurePreferences(this)
     return pr.getBoolean(key, defaultValue)
 }
 
-fun getPrefString(context: Context, key: String, defaultValue: String): String {
-    val pr = SecurePreferences(context)
+fun Context.getPrefString( key: String, defaultValue: String): String {
+    val pr = SecurePreferences(this)
     return pr.getString(key, defaultValue)
 }
 
-fun getPrefInt(context: Context, key: String, defaultValue: Int): Int {
-    val pr = SecurePreferences(context)
+fun Context.getPrefInt(key: String, defaultValue: Int): Int {
+    val pr = SecurePreferences(this)
     return pr.getInt(key, defaultValue)
 }
 
-fun getPrefFloat(context: Context, key: String, defaultValue: Float): Float {
-    val pr = SecurePreferences(context)
+fun Context.getPrefFloat( key: String, defaultValue: Float): Float {
+    val pr = SecurePreferences(this)
     return pr.getFloat(key, defaultValue)
 }
 
-fun getPrefLong(context: Context, key: String, defaultValue: Long): Long {
-    val pr = SecurePreferences(context)
+fun Context.getPrefLong(key: String, defaultValue: Long): Long {
+    val pr = SecurePreferences(this)
     return pr.getLong(key, defaultValue)
 }
 
-fun <T> getPref(context: Context, key: String, classOf: Class<T>): T? {
+fun <T> Context.getPref(key: String, classOf: Class<T>): T? {
     try {
-        val s = getPrefString(context, key, "")
+        val s = this.getPrefString( key, "")
         if (s != "") {
             return fromJson(s, classOf)
         }
 
-        val i = getPrefInt(context, key, -1)
+        val i = this.getPrefInt(key, -1)
         if (i != -1)
             return i as T
 
-        val f = getPrefFloat(context, key, -1f)
+        val f = this.getPrefFloat( key, -1f)
         if (f != -1f)
             return f as T
 
-        val l = getPrefLong(context, key, -1L)
+        val l = this.getPrefLong( key, -1L)
         if (l != -1L)
             return l as T
-        return getPrefBoolean(context, key, false) as T
+        return this.getPrefBoolean( key, false) as T
     } catch (e: Exception) {
         logError("UtilsLibrary::getPref", e)
         return null

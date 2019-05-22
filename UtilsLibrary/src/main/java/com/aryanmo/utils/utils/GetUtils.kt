@@ -14,7 +14,7 @@ import com.aryanmo.utils.R
 import com.aryanmo.utils.utils.log.logError
 import java.util.regex.Pattern
 
-private fun getString(context: Context, s: String, html: Boolean = false): String {
+private fun Context.getString(s: String, html: Boolean = false): String {
     var s = s
     val matcher = Pattern.compile("\\{\\{(.+)\\}\\}").matcher(s)
     while (matcher.find()) {
@@ -22,7 +22,7 @@ private fun getString(context: Context, s: String, html: Boolean = false): Strin
         var text = ""
         while (matcher2.find()) {
             if (text == "") {
-                text = getString(context, getResId(context, matcher2.group(), R.string::class.java))
+                text = this.getString(this.getResId(matcher2.group(), R.string::class.java))
                 continue
             }
             text = applyFilter(text, matcher2.group())
@@ -31,17 +31,17 @@ private fun getString(context: Context, s: String, html: Boolean = false): Strin
     }
     if (html)
         return s
-    return getHtml(s).toString()
+    return s.toHtml().toString()
 }
 
-fun getString(context: Context, s: String): String {
-    return getString(context, s, false)
+fun Context.getString(s: String): String {
+    return this.getString( s, false)
 }
 
-fun getString(context: Context, @StringRes stringIdRes: Int): String {
+fun Context.getString(@StringRes stringIdRes: Int): String {
     return try {
-        val s = getResources(context).getString(stringIdRes)
-        getString(context, s)
+        val s = this.resources.getString(stringIdRes)
+        getString(s)
     } catch (e: Exception) {
         logError("getString(Context context, @StringRes int stringIdRes)", e)
         "Error"
@@ -49,12 +49,12 @@ fun getString(context: Context, @StringRes stringIdRes: Int): String {
 
 }
 
-private fun getResId(context: Context, resName: String, c: Class<*>): Int {
+private fun Context.getResId(resName: String, c: Class<*>): Int {
     return try {
-        context.resources.getIdentifier(
+        this.resources.getIdentifier(
             resName,
             c.name.replace(com.aryanmo.utils.R::class.java.toString().replace("class", "").trim { it <= ' ' } + "$", ""),
-            context.packageName)
+            this.packageName)
     } catch (e: Exception) {
         logError("getResId", e)
         -1
@@ -62,18 +62,18 @@ private fun getResId(context: Context, resName: String, c: Class<*>): Int {
 
 }
 
-fun getStrings(context: Context, divider: String, @StringRes vararg stringIdRes: Int): String {
-    val s = StringBuilder(getString(context, stringIdRes[0]))
+fun Context.getStrings(divider: String, @StringRes vararg stringIdRes: Int): String {
+    val s = StringBuilder(this.getString( stringIdRes[0]))
     if (stringIdRes.size >= 2) {
         for (i in 1 until stringIdRes.size) {
-            s.append(divider).append(getString(context, stringIdRes[i]))
+            s.append(divider).append(this.getString( stringIdRes[i]))
         }
     }
-    return getStrings(context, s.toString())
+    return this.getStrings(s.toString())
 }
 
-fun getFormattedString(context: Context, @StringRes stringIdRes: Int, vararg args: Any): String {
-    return getString(context, String.format(getString(context, stringIdRes), *args))
+fun Context.getFormattedString(@StringRes stringIdRes: Int, vararg args: Any): String {
+    return this.getString(String.format(this.getString(stringIdRes), *args))
 }
 
 private fun applyFilter(s: String, filter: String): String {
@@ -92,14 +92,14 @@ private fun applyFilter(s: String, filter: String): String {
 
 //SPANNED
 
-fun getSpanned(context: Context, s: String): Spanned {
-    return getHtml(getString(context, s, true))
+fun Context.getSpanned( s: String): Spanned {
+    return this.getString( s, true).toHtml()
 }
 
-fun getSpanned(context: Context, @StringRes stringIdRes: Int): Spanned? {
+fun Context.getSpanned(@StringRes stringIdRes: Int): Spanned? {
     return try {
-        val s = getResources(context).getString(stringIdRes)
-        getSpanned(context, s)
+        val s = this.resources.getString(stringIdRes)
+        this.getSpanned( s)
     } catch (e: Exception) {
         logError("getString(Context context, @StringRes int stringIdRes)", e)
         null
@@ -107,18 +107,18 @@ fun getSpanned(context: Context, @StringRes stringIdRes: Int): Spanned? {
     }
 }
 
-fun getSpanneds(context: Context, divider: String, @StringRes vararg stringIdRes: Int): Spanned {
-    val s = StringBuilder(getString(context, stringIdRes[0]))
+fun Context.getSpanneds(divider: String, @StringRes vararg stringIdRes: Int): Spanned {
+    val s = StringBuilder(this.getString(stringIdRes[0]))
     if (stringIdRes.size >= 2) {
         for (i in 1 until stringIdRes.size) {
-            s.append(divider).append(getString(context, stringIdRes[i]))
+            s.append(divider).append(this.getString(stringIdRes[i]))
         }
     }
-    return getSpanned(context, s.toString())
+    return this.getSpanned(s.toString())
 }
 
-fun getFormattedSpanned(context: Context, @StringRes stringIdRes: Int, vararg args: Any): Spanned {
-    return getSpanned(context, String.format(getString(context, stringIdRes), *args))
+fun Context.getFormattedSpanned( @StringRes stringIdRes: Int, vararg args: Any): Spanned {
+    return this.getSpanned( String.format(getString(stringIdRes), *args))
 }
 
 //DIMEN
