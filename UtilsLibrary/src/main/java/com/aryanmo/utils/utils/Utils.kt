@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.net.Uri
 import android.os.Build
 import android.os.VibrationEffect
@@ -100,7 +99,7 @@ private fun closeApp() {
 
 fun Activity.restartApp() {
     val intent = this.baseContext.packageManager
-            .getLaunchIntentForPackage(this.baseContext.packageName)
+        .getLaunchIntentForPackage(this.baseContext.packageName)
     intent!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
     this.startActivity(intent)
 }
@@ -113,17 +112,30 @@ fun String.toHtml(): Spanned {
     }
 }
 
-fun Activity.delayOnUiThread(duration: Int, runnable: Runnable?) {
+@Deprecated(
+    "function change to Activity.delayOnUiThread(duration: Int){}",
+    ReplaceWith("Activity.delayOnUiThread(duration: Int){}")
+)
+fun Activity.delayOnUiThread(duration: Int, runnable: Runnable? = null) {
+    this.delayOnUiThread(duration) {
+        runnable?.run()
+    }
+}
+
+fun Activity.delayOnUiThread(duration: Int, runnable: () -> Unit) {
     Thread(Runnable {
         try {
             Thread.sleep(duration.toLong())
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
-
-        if (runnable != null)
-            this.runOnUiThread(runnable)
+        runnable()
     }).start()
+}
+
+fun Activity.delayOnUiThread(duration: Int) {
+    this.delayOnUiThread(duration) {
+    }
 }
 
 fun delay(duration: Long) {
@@ -136,7 +148,7 @@ fun delay(duration: Long) {
     })
 }
 
-fun Context.dpTOInt( f: Float): Int {
+fun Context.dpTOInt(f: Float): Int {
     val scale = this.resources.displayMetrics.density
     return (f * scale + 0.5f).toInt()
 }
@@ -152,7 +164,7 @@ fun Context.dpToFloat(dp: Float): Float {
 fun Activity.hideSoftKeyboard() {
     try {
         val view = currentFocus ?: return
-        this.hideSoftKeyboard( view)
+        this.hideSoftKeyboard(view)
     } catch (e: Exception) {
         logError("hideSoftKeyboard", e)
     }
@@ -196,6 +208,23 @@ fun Context.isLandscape(): Boolean {
     return !isPortrait()
 }
 
+fun isRTL(): Boolean {
+    return isRTL(Locale.getDefault())
+}
+
+fun isRTL(locale: Locale): Boolean {
+    val directionality = Character.getDirectionality(locale.displayName[0]).toInt()
+    return directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT.toInt() || directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC.toInt()
+}
+
+fun isLtr(): Boolean {
+    return !isLtr(Locale.getDefault())
+}
+
+fun isLtr(locale: Locale): Boolean {
+    return !isRTL(locale)
+}
+
 //Vibrate
 @SuppressLint("MissingPermission")
 fun Activity.vibrate(vibrationEffect: VibrationEffect): Vibrator? {
@@ -215,7 +244,7 @@ fun Activity.vibrate(vibrationEffect: VibrationEffect): Vibrator? {
 }
 
 @SuppressLint("MissingPermission")
-fun Activity.vibrate( milliseconds: Long, amplitude: Int): Vibrator {
+fun Activity.vibrate(milliseconds: Long, amplitude: Int): Vibrator {
     val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

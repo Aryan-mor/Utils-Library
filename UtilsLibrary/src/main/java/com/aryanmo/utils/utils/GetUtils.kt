@@ -11,31 +11,40 @@ import android.support.v4.content.ContextCompat
 import android.text.Spanned
 import android.util.TypedValue
 import com.aryanmo.utils.R
+import com.aryanmo.utils.utils.log.log
 import com.aryanmo.utils.utils.log.logError
 import java.util.regex.Pattern
 
 private fun Context.getString(s: String, html: Boolean = false): String {
+    if (true)
+        return s
+
+
     var s = s
     val matcher = Pattern.compile("\\{\\{(.+)\\}\\}").matcher(s)
     while (matcher.find()) {
-        val matcher2 = Pattern.compile("\\w+").matcher(matcher.group(1))
+        val matcher2 = Pattern.compile("\\{\\{(\\w+)\\}\\}").matcher(s)
         var text = ""
+        log("first")
         while (matcher2.find()) {
             if (text == "") {
-                text = this.getString(this.getResId(matcher2.group(), R.string::class.java))
+                text = this.getString(this.getResId(matcher2.group(1), R.string::class.java))
                 continue
             }
             text = applyFilter(text, matcher2.group())
         }
-        s = matcher.replaceFirst(text)
+        s = matcher2.replaceFirst(text)
+        log("before s -> $s")
+        log("after s -> $s")
     }
+    log("string -> $s")
     if (html)
         return s
     return s.toHtml().toString()
 }
 
 fun Context.getString(s: String): String {
-    return this.getString( s, false)
+    return this.getString(s, false)
 }
 
 fun Context.getString(@StringRes stringIdRes: Int): String {
@@ -53,7 +62,8 @@ private fun Context.getResId(resName: String, c: Class<*>): Int {
     return try {
         this.resources.getIdentifier(
             resName,
-            c.name.replace(com.aryanmo.utils.R::class.java.toString().replace("class", "").trim { it <= ' ' } + "$", ""),
+            c.name.replace(com.aryanmo.utils.R::class.java.toString().replace("class", "").trim { it <= ' ' } + "$",
+                ""),
             this.packageName)
     } catch (e: Exception) {
         logError("getResId", e)
@@ -63,10 +73,10 @@ private fun Context.getResId(resName: String, c: Class<*>): Int {
 }
 
 fun Context.getStrings(divider: String, @StringRes vararg stringIdRes: Int): String {
-    val s = StringBuilder(this.getString( stringIdRes[0]))
+    val s = StringBuilder(this.getString(stringIdRes[0]))
     if (stringIdRes.size >= 2) {
         for (i in 1 until stringIdRes.size) {
-            s.append(divider).append(this.getString( stringIdRes[i]))
+            s.append(divider).append(this.getString(stringIdRes[i]))
         }
     }
     return this.getStrings(s.toString())
@@ -92,14 +102,14 @@ private fun applyFilter(s: String, filter: String): String {
 
 //SPANNED
 
-fun Context.getSpanned( s: String): Spanned {
-    return this.getString( s, true).toHtml()
+fun Context.getSpanned(s: String): Spanned {
+    return this.getString(s, true).toHtml()
 }
 
 fun Context.getSpanned(@StringRes stringIdRes: Int): Spanned? {
     return try {
         val s = this.resources.getString(stringIdRes)
-        this.getSpanned( s)
+        this.getSpanned(s)
     } catch (e: Exception) {
         logError("getString(Context context, @StringRes int stringIdRes)", e)
         null
@@ -117,8 +127,8 @@ fun Context.getSpanneds(divider: String, @StringRes vararg stringIdRes: Int): Sp
     return this.getSpanned(s.toString())
 }
 
-fun Context.getFormattedSpanned( @StringRes stringIdRes: Int, vararg args: Any): Spanned {
-    return this.getSpanned( String.format(getString(stringIdRes), *args))
+fun Context.getFormattedSpanned(@StringRes stringIdRes: Int, vararg args: Any): Spanned {
+    return this.getSpanned(String.format(getString(stringIdRes), *args))
 }
 
 //DIMEN

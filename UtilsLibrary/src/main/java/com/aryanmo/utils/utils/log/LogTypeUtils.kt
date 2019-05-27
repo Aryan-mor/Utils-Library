@@ -4,12 +4,12 @@ import android.content.Context
 import com.aryanmo.utils.utils.FLAG
 import com.aryanmo.utils.utils.hydrate
 
-fun Any.log(context: Context?, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
+fun Any.logThis(context: Context?, logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     log(context = context, logMessage = this, logFlag = logFlag, logType = logType)
 }
 
-fun Any.log(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
-    this.log(null, logFlag = logFlag, logType = logType)
+fun Any.logThis(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
+    this.logThis(null, logFlag = logFlag, logType = logType)
 }
 
 fun String.logJson(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
@@ -22,7 +22,7 @@ fun Map<*, *>.log(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     }
 }
 
-fun List<*>.log(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
+fun List<*>.logThis(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     var index = 0
     this.forEach {
         log(logMessage = "index -> ${index++}   |   item -> $it", logFlag = logFlag, logType = logType)
