@@ -122,19 +122,21 @@ fun Activity.delayOnUiThread(duration: Int, runnable: Runnable? = null) {
     }
 }
 
-fun Activity.delayOnUiThread(duration: Int, runnable: () -> Unit) {
-    Thread(Runnable {
-        try {
-            Thread.sleep(duration.toLong())
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        }
-        runnable()
-    }).start()
-}
-
 fun Activity.delayOnUiThread(duration: Int) {
     this.delayOnUiThread(duration) {
+    }
+}
+
+fun Activity.delayOnUiThread(duration: Int, runnable: () -> Unit) {
+    this.runOnUiThread {
+        Thread(Runnable {
+            try {
+                Thread.sleep(duration.toLong())
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+            }
+            runnable()
+        }).start()
     }
 }
 
