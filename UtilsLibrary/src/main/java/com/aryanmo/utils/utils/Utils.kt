@@ -128,15 +128,15 @@ fun Activity.delayOnUiThread(duration: Int) {
 }
 
 fun Activity.delayOnUiThread(duration: Int, runnable: () -> Unit) {
+    Thread(Runnable {
+        try {
+            Thread.sleep(duration.toLong())
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+    }).start()
     this.runOnUiThread {
-        Thread(Runnable {
-            try {
-                Thread.sleep(duration.toLong())
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-            }
-            runnable()
-        }).start()
+        runnable()
     }
 }
 
