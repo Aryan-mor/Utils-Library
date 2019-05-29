@@ -13,10 +13,10 @@ fun Any.logThis(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
 }
 
 fun String.logJson(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
-    this.hydrate(HashMap<Any, Any>()::class.java)?.log(logFlag = logFlag, logType = logType)
+    this.hydrate(HashMap<Any, Any>()::class.java)?.logThis(logFlag = logFlag, logType = logType)
 }
 
-fun Map<*, *>.log(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
+fun Map<*, *>.logThis(logFlag: String = FLAG, logType: Int = DEFAULT_LOG_MODE) {
     this.forEach {
         log(logMessage = "key -> ${it.key}   |   value -> ${it.value}", logFlag = logFlag, logType = logType)
     }
