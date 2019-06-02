@@ -1,6 +1,6 @@
 # Utils-Library
 
-Android amazing helper fucntion library<br>
+Android amazing helper function library<br>
 `Only work on kotlin`
 
 Usage
