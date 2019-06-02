@@ -27,7 +27,15 @@ dependencies {
 * [UtilsFucntion](#utilsfunctions)
 * [Intent](#intentfunctions)
 * [Log](#logfunctions)
+* [SharedPreferences](#sharedpreferencesfunctions)
 * [Toast](#toastfunctions)
+* [SnackBar](#toastfunctions)
+* [CheckUtils](#checkutilsfunctions)
+* [Convertor](#convertorfunctions)
+* [DateUtils](#datefunctions)
+* [DirUtils](#dirfunctions)
+* [FileUtils](#filefunctions)
+* [Encryption](#encryptionfunctions)
 
 # Example
 Some examples of library functions
@@ -183,6 +191,24 @@ You can log ArrayList or Map item
     //or ....
 
     //The array is the same
+
+```
+
+## SharedPreferencesFunctions
+Secure shared preferences.
+All item save to preferences key and value first key and value encrypted<br>
+and when getItem decrypt and return item.
+```Pref
+    
+    context.addPref("key", any)
+    
+    context.getPref("key", Any:class.java)
+    //Or
+    getPrefBoolean("key", defultValue)
+    getPrefString("key", defultValue)
+    getPrefInt("key", defultValue)
+    getPrefFloat("key", defultValue)
+    getPrefLong("key", defultValue)
 
 ```
 
