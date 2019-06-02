@@ -25,6 +25,7 @@ dependencies {
 
 ### Index
 * [Intent](#intentfunctions)
+* [Log](#logfunctions)
 
 # Example
 چند نمونه از فانکشن های این کتاب خانه
@@ -51,6 +52,72 @@ class MainActivity : AppCompatActivity(){
         //On another activity you can recive object like this
         val myParam = getExtra("myParamKey",AnyObject::class.java)
         
+    }
+
+}
+```
+
+## LogFunctions
+**AnyWhere can use log funtion :relaxed:**
+```basicLog
+class AnyClass{
+
+    fun a(){
+        //Basic usage
+        log(Any) // log any object
+        //or
+        Any().logThis()
+        //or
+        log("log this message")
+        
+        //AdvanceTools
+        log(Any(),"MyLogFlag",LOG_ERROR_MODE)
+        //or
+        log(logMessage = Any(),logFlag = "MyLogFlag",logType = LOG_ERROR_MODE)
+        
+        //LogType ->
+        //LOG_DEBUG_MODE
+        //LOG_ERROR_MODE
+        //LOG_INFO_MODE
+        //LOG_VERBOSE_MODE
+        //LOG_WARN_MODE
+        //LOG_WTF_MODE
+    
+    }
+
+}
+```
+
+**You can use 6 type log type :metal:**
+```logType
+class AnyClass{
+
+    fun a(){
+       logD("Log Type Debug")
+       logE("Log Type Error")
+       logI("Log Type Info")
+       logV("Log Type Verbose")
+       logW("Log Type Warn")
+       logWTF("Log Type WTF")
+    }
+
+}
+```
+
+You can log ArrayList or Map item
+```logType
+class AnyClass{
+
+    fun a(){
+        val map = hashMapOf<String,Any>()
+        map["aa"] = "safa"
+        map.logThis()
+        //or
+        map.logThisE()
+        //or ....
+        
+        
+        //The array is the same
     }
 
 }
