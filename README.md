@@ -3,9 +3,9 @@
 Android amazing helper fucntion library<br>
 `Only work on kotlin`
 
-Setup
+Usage
 --------
- Use Gradle:
+Include the library in your build.gradle
 
 ```gradle
 //Project
@@ -33,19 +33,19 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        
+        //Basic usage
         intentTo(AnotherActivity::class)
         //Or
         var intent = makeIntent(AnotherActivity::class)
         
         
         //You can send any params to another activity
-        intentTo(AnotherActivity::class,"myParamKey",AnyObject)
+        intentTo(AnotherActivity::class,"myParamKey", anyObject)
         
         
         
         //On another activity you can recive object like this
-        //if your paramter not int, float,
+        val myParam = getExtra("myParamKey",AnyObject::class.java)
         
     }
 
