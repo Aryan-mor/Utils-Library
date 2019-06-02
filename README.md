@@ -23,10 +23,13 @@ dependencies {
 }
 ```
 
+### Index
+* [Intent](#intentfunctions)
+
 # Example
 چند نمونه از فانکشن های این کتاب خانه
 
-Intent functions
+## IntentFunctions
 --------
 ```intent
 class MainActivity : AppCompatActivity(){
