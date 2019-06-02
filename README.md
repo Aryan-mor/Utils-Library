@@ -29,7 +29,7 @@ dependencies {
 * [UtilsFucntion](#utilsfunctions)
 
 # Example
-**Some examples of library functions**
+Some examples of library functions
 
 ## IntentFunctions
 ```intent
@@ -70,7 +70,7 @@ You can open link like this
 ```
 
 ## LogFunctions
-**AnyWhere can use log funtion :relaxed:**
+AnyWhere can use log funtion :relaxed:
 ```basicLog
     //Basic usage
     log(Any) // log any object
@@ -94,7 +94,7 @@ You can open link like this
 
 ```
 
-**You can use 6 type log type :metal:**
+You can use 6 type log type :metal:
 ```logType
 
    logD("Log Type Debug")
