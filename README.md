@@ -24,12 +24,78 @@ dependencies {
 ```
 
 ### Index
+* [UtilsFucntion](#utilsfunctions)
 * [Intent](#intentfunctions)
 * [Log](#logfunctions)
-* [UtilsFucntion](#utilsfunctions)
+* [Toast](#toastfunctions)
 
 # Example
 Some examples of library functions
+
+
+## UtilsFunctions
+
+You can convert all classes to json like this and hydrate
+```ConvetToJson
+
+    val json = Any().toJson()
+
+    //json type is string
+
+    json.hydrate(Any::class.java)
+
+```
+
+Another functions
+```AnotherFunction
+    //You can close application like this
+    activity.closeApp()
+    
+    //You can restart application like this
+    activity.restartApp()
+    
+    //you can delay application like this 
+    actvity.delayOnUiThread(200) // 200 is duration milisecound
+    //or run funtion by delay like this
+    actvity.delayOnUiThread(200){
+        //your code
+    }
+    
+    ***************************************
+    
+    //Hidden keyboard
+    actvity.showSoftKeyboard()
+    //or
+    actvity.showSoftKeyboard(EditText)
+    
+    //Show keyboard
+    actvity.showSoftKeyboard()
+    //or
+    actvity.showSoftKeyboard(AnyView)
+    
+    ***************************************
+    
+    //You can understand user device size | fucntions return Boolean
+    context.isTablet()
+    context.isLargeScreen()
+    context.isNormalScreen()
+    context.isSmallScreen()
+    
+    ***************************************
+    
+    //You can understand device is portrait or landscape | fucntions return Boolean
+    context.isPortrait()
+    context.isLandscape()
+    
+    ***************************************
+    
+    //You can vibrate phone if use vibrate permision on your manifest | fucntions return Vibrator?
+    activity.vibrate(VibrationEffect)
+    //Or 
+    activity.vibrate(milliseconds: Long, amplitude: Int)
+    
+    
+```
 
 ## IntentFunctions
 ```intent
@@ -107,7 +173,7 @@ You can use 6 type log type :metal:
 ```
 
 You can log ArrayList or Map item
-```logType
+```logMapAndArray
 
     val map = hashMapOf<String,Any>()
     map["aa"] = "safa"
@@ -120,66 +186,16 @@ You can log ArrayList or Map item
 
 ```
 
-## UtilsFunctions
+## ToastFunctions
+Toast fuction by context
+```toast
+    //ToastFucntion | return Toast
+    context.toast("myToastMessage").show()
+    
+    context.toast(R.string.myString).show()
+    
+    context.longToast("myToastMessage").show()
+    
+    context.longToast(R.string.myString).show()
 
-You can convert all classes to json like this and hydrate
-```ConvetToJson
-
-    val json = Any().toJson()
-
-    //json type is string
-
-    json.hydrate(Any::class.java)
-
-```
-
-Another functions
-```AnotherFunction
-    //You can close application like this
-    activity.closeApp()
-    
-    //You can restart application like this
-    activity.restartApp()
-    
-    //you can delay application like this 
-    actvity.delayOnUiThread(200) // 200 is duration milisecound
-    //or run funtion by delay like this
-    actvity.delayOnUiThread(200){
-        //your code
-    }
-    
-    ***************************************
-    
-    //Hidden keyboard
-    actvity.showSoftKeyboard()
-    //or
-    actvity.showSoftKeyboard(EditText)
-    
-    //Show keyboard
-    actvity.showSoftKeyboard()
-    //or
-    actvity.showSoftKeyboard(AnyView)
-    
-    ***************************************
-    
-    //You can understand user device size | fucntions return Boolean
-    context.isTablet()
-    context.isLargeScreen()
-    context.isNormalScreen()
-    context.isSmallScreen()
-    
-    ***************************************
-    
-    //You can understand device is portrait or landscape | fucntions return Boolean
-    context.isPortrait()
-    context.isLandscape()
-    
-    ***************************************
-    
-    //You can vibrate phone if use vibrate permision on your manifest | fucntions return Vibrator?
-    activity.vibrate(VibrationEffect)
-    //Or 
-    activity.vibrate(milliseconds: Long, amplitude: Int)
-    
-    
 ```
