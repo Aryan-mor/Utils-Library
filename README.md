@@ -195,9 +195,9 @@ You can log ArrayList or Map item
 ```
 
 ## SharedPreferencesFunctions
-Secure shared preferences.
-All item save to preferences key and value first key and value encrypted<br>
-and when getItem decrypt and return item.
+Source code for Shared Preferences
+All items will be first encrypted and then saved into shared preferences,
+items will be decrypted upon retrieving
 ```Pref
     
     context.addPref("key", any)
