@@ -23,9 +23,11 @@ dependencies {
 }
 ```
 
-Example
+# Example
+چند نمونه از فانکشن های این کتاب خانه
+
+Intent functions
 --------
-Intent functions:
 ```intent
 class MainActivity : AppCompatActivity(){
 
