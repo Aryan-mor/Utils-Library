@@ -3,6 +3,7 @@ package com.aryanmo.utils.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -38,6 +39,21 @@ fun Activity.getVersionCode(): Int {
     return -1
 }
 
+fun Application.getVersionCode(): Int {
+    try {
+        val pInfo = this.packageManager.getPackageInfo(this.packageName, 0)
+        return if (android.os.Build.VERSION.SDK_INT >= 28) {
+            pInfo.longVersionCode.toInt()
+        } else {
+            pInfo.versionCode
+        }
+    } catch (e: Exception) {
+        logError("getVersionCode", e)
+    }
+
+    return -1
+}
+
 fun Activity.getVersionName(): String {
     try {
         val pInfo = this.packageManager.getPackageInfo(this.packageName, 0)
@@ -50,6 +66,31 @@ fun Activity.getVersionName(): String {
 }
 
 fun Activity.getAppInfo(): HashMap<String, String> {
+    try {
+        val hashMap = HashMap<String, String>()
+        hashMap["os"] = "android"
+        hashMap["android_sdk_api_level"] = sdkApiLevel.toString()
+        hashMap["version"] = this.getVersionCode().toString()
+        return hashMap
+    } catch (e: Exception) {
+        logError("getAppInfo", e)
+        return HashMap()
+    }
+
+}
+
+fun Application.getVersionName(): String {
+    try {
+        val pInfo = this.packageManager.getPackageInfo(this.packageName, 0)
+        return pInfo.versionName
+    } catch (e: Exception) {
+        logError("getVersionCode", e)
+        return ""
+    }
+
+}
+
+fun Application.getAppInfo(): HashMap<String, String> {
     try {
         val hashMap = HashMap<String, String>()
         hashMap["os"] = "android"
@@ -134,10 +175,10 @@ fun Activity.delayOnUiThread(duration: Int, runnable: () -> Unit) {
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
+        this.runOnUiThread {
+            runnable()
+        }
     }).start()
-    this.runOnUiThread {
-        runnable()
-    }
 }
 
 fun delay(duration: Long) {
@@ -147,7 +188,7 @@ fun delay(duration: Long) {
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
-    })
+    }).start()
 }
 
 fun Context.dpTOInt(f: Float): Int {
@@ -182,7 +223,17 @@ fun Activity.hideSoftKeyboard(view: View) {
     } catch (e: Exception) {
         logError("hideSoftKeyboard", e)
     }
+}
 
+fun Activity.showSoftKeyboard() {
+    val view = currentFocus ?: return
+    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+}
+
+fun Activity.showSoftKeyboard(view: View) {
+    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
 }
 
 //Device
