@@ -60,7 +60,13 @@ class MainActivity : AppCompatActivity(){
 
 You can intent to your app package setting like this
 ```intentToPackageSetting
-    intentToPackageSetting()
+    context.intentToPackageSetting()
+```
+
+
+You can open link like this
+```intentToPackageSetting
+    context.openLink("http://...")
 ```
 
 ## LogFunctions
