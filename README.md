@@ -30,7 +30,6 @@ dependencies {
 چند نمونه از فانکشن های این کتاب خانه
 
 ## IntentFunctions
---------
 ```intent
 class MainActivity : AppCompatActivity(){
 
