@@ -33,6 +33,7 @@ dependencies {
 * [CheckUtils](#checkutilsfunctions)
 * [Convertor](#convertorfunctions)
 * [DateUtils](#datefunctions)
+* [VoiceRecorder](#voicerecorder)
 * [DirUtils](#dirfunctions)
 * [FileUtils](#filefunctions)
 * [Encryption](#encryptionfunctions)
