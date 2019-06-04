@@ -3,7 +3,7 @@ package com.aryanmo.utils.utils.log
 import android.content.Context
 import android.util.Log
 import com.aryanmo.utils.utils.FLAG
-import com.aryanmo.utils.utils.getString
+import com.aryanmo.utils.utils.gString
 
 
 val LOG_VISIBILITY = true
@@ -21,7 +21,7 @@ fun log(context: Context?, logMessage: Any, logFlag: String = FLAG, logType: Int
     var logMe = if (logMessage is Boolean) "Boolean -> $logMessage" else logMessage
     logMe = logMe.toString()
     if (context != null) {
-        logMe = context.getString(logMe)
+        logMe = context.gString(logMe)
     }
     val logFl: String = logFlag
     when (logType) {

@@ -104,15 +104,7 @@ fun Application.getAppInfo(): HashMap<String, String> {
 
 }
 
-fun Activity.openLink(link: String): Boolean {
-    try {
-        this.intentTo(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
-        return true
-    } catch (e: Exception) {
-        logError("openLink", e)
-        return false
-    }
-}
+
 
 fun Activity.closeApp() {
     try {
@@ -253,6 +245,10 @@ fun Context.isSmallScreen(): Boolean {
     return resources.getBoolean(com.aryanmo.utils.R.bool.isSmallScreen)
 }
 
+fun Context.isTablet(): Boolean {
+    return isLargeScreen() || isXLargeScreen()
+}
+
 fun Context.isPortrait(): Boolean {
     return resources.getBoolean(com.aryanmo.utils.R.bool.isPortrait)
 }
@@ -299,7 +295,6 @@ fun Activity.vibrate(vibrationEffect: VibrationEffect): Vibrator? {
 @SuppressLint("MissingPermission")
 fun Activity.vibrate(milliseconds: Long, amplitude: Int): Vibrator {
     val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
-
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         v!!.vibrate(VibrationEffect.createOneShot(milliseconds, amplitude))
     } else {

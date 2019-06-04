@@ -6,7 +6,7 @@ import android.widget.Toast
 
 
 fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT): Toast {
-    return Toast.makeText(this, getString(message), duration)
+    return Toast.makeText(this, gString(message), duration)
 }
 
 fun Context.toast(@StringRes message: Int, duration: Int = Toast.LENGTH_SHORT): Toast {

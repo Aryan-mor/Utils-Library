@@ -11,9 +11,9 @@ fun View.snackbar(
     actionText: String = "",
     runnable: Runnable? = null
 ): Snackbar {
-    val snackbar = Snackbar.make(this, this.context.getString(text), duration)
+    val snackbar = Snackbar.make(this, this.context.gString(text), duration)
     if (runnable != null) {
-        snackbar.setAction(this.context.getString( actionText)) {
+        snackbar.setAction(this.context.gString( actionText)) {
             runnable.run()
         }
     }

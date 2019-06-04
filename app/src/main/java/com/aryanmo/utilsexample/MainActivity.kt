@@ -2,12 +2,11 @@ package com.aryanmo.utilsexample
 
 import android.os.Bundle
 import com.aryanmo.utils.BaseActivity
-import com.aryanmo.utils.utils.*
+import com.aryanmo.utils.utils.gString
+import com.aryanmo.utils.utils.intentTo
 import com.aryanmo.utils.utils.log.DEFAULT_LOG_MODE
 import com.aryanmo.utils.utils.log.LOG_ERROR_MODE
 import com.aryanmo.utils.utils.log.log
-import com.aryanmo.utils.utils.log.logThis
-import kotlin.math.log
 
 class MainActivity : BaseActivity(true) {
 
@@ -18,10 +17,12 @@ class MainActivity : BaseActivity(true) {
 
         statusBarColor = android.R.color.holo_red_light
 
-        log(":DDDDDDDDDDDDDDD")
-//        log("mylog -> " + getString("{{test1}}{{test2}}{{test3}}"), logType = LOG_ERROR_MODE)
-        log("mylog -> " + getString("{{test1}}{{test2}}"), logType = LOG_ERROR_MODE)
 
+        intentTo(TestActivity::class, "key", 5)
+
+        log(":DDDDDDDDDDDDDDD")
+//        log("mylog -> " + gString("{{test1}}{{test2}}{{test3}}"), logType = LOG_ERROR_MODE)
+        log("mylog -> " + gString("{{test1}}{{test2}}"), logType = LOG_ERROR_MODE)
 
 
 //

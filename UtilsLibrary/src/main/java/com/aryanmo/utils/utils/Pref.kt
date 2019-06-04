@@ -28,7 +28,7 @@ fun Context.getPrefBoolean(key: String, defaultValue: Boolean): Boolean {
     return pr.getBoolean(key, defaultValue)
 }
 
-fun Context.getPrefString( key: String, defaultValue: String): String {
+fun Context.getPrefString(key: String, defaultValue: String): String {
     val pr = SecurePreferences(this)
     return pr.getString(key, defaultValue)
 }
@@ -38,7 +38,7 @@ fun Context.getPrefInt(key: String, defaultValue: Int): Int {
     return pr.getInt(key, defaultValue)
 }
 
-fun Context.getPrefFloat( key: String, defaultValue: Float): Float {
+fun Context.getPrefFloat(key: String, defaultValue: Float): Float {
     val pr = SecurePreferences(this)
     return pr.getFloat(key, defaultValue)
 }
@@ -50,23 +50,23 @@ fun Context.getPrefLong(key: String, defaultValue: Long): Long {
 
 fun <T> Context.getPref(key: String, classOf: Class<T>): T? {
     try {
-        val s = this.getPrefString( key, "")
+        val s = this.getPrefString(key, "")
         if (s != "") {
-            return fromJson(s, classOf)
+            return s.hydrate(classOf)
         }
 
         val i = this.getPrefInt(key, -1)
         if (i != -1)
             return i as T
 
-        val f = this.getPrefFloat( key, -1f)
+        val f = this.getPrefFloat(key, -1f)
         if (f != -1f)
             return f as T
 
-        val l = this.getPrefLong( key, -1L)
+        val l = this.getPrefLong(key, -1L)
         if (l != -1L)
             return l as T
-        return this.getPrefBoolean( key, false) as T
+        return this.getPrefBoolean(key, false) as T
     } catch (e: Exception) {
         logError("UtilsLibrary::getPref", e)
         return null

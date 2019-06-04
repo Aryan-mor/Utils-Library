@@ -28,7 +28,7 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
 
     public EditText(Context context, AttributeSet attrs) {
         super(context, attrs);
-        borderColor = com.aryanmo.utils.utils.GetUtilsKt.getAccentColor(getContext());
+        borderColor = com.aryanmo.utils.utils.GetUtilsKt.gAccentColor(getContext());
         init(attrs);
     }
 
@@ -66,7 +66,7 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
             TypedArray a = getContext().obtainStyledAttributes(attr, set);
             CharSequence t = a.getText(0);
             a.recycle();
-            setText(com.aryanmo.utils.utils.GetUtilsKt.getSpanned(getContext(), t.toString()));
+            setText(com.aryanmo.utils.utils.GetUtilsKt.gSpanned(getContext(), t.toString()));
 
         } catch (Exception e) {
             logError("setTextFromAttr", e);
@@ -147,7 +147,7 @@ public class EditText extends android.support.v7.widget.AppCompatEditText {
             }
             borderColor = a.getColor(R.styleable.ArGlobal_ar_utils_itemBorderColor, -1);
             if (borderColor == -1) {
-                borderColor = com.aryanmo.utils.utils.GetUtilsKt.getAccentColor(getContext());
+                borderColor = com.aryanmo.utils.utils.GetUtilsKt.gAccentColor(getContext());
             }
             setBorder(borderWidth, borderColor);
             a.recycle();

@@ -78,7 +78,7 @@ public class TextView extends android.support.v7.widget.AppCompatTextView {
             CharSequence t = a.getText(0);
             a.recycle();
             if (t != null) {
-                setText(com.aryanmo.utils.utils.GetUtilsKt.getSpanned(getContext(), t.toString()));
+                setText(com.aryanmo.utils.utils.GetUtilsKt.gSpanned(getContext(), t.toString()));
             }
         } catch (Exception e) {
             logError("setTextFromAttr", e);
@@ -152,7 +152,7 @@ public class TextView extends android.support.v7.widget.AppCompatTextView {
         }
         borderColor = a.getColor(R.styleable.ArGlobal_ar_utils_itemBorderColor, -1);
         if (borderColor == -1) {
-            borderColor = com.aryanmo.utils.utils.GetUtilsKt.getAccentColor(getContext());
+            borderColor = com.aryanmo.utils.utils.GetUtilsKt.gAccentColor(getContext());
         }
         setBorder(borderWidth, borderColor);
         a.recycle();

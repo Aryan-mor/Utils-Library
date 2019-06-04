@@ -15,7 +15,7 @@ import com.aryanmo.utils.utils.log.log
 import com.aryanmo.utils.utils.log.logError
 import java.util.regex.Pattern
 
-private fun Context.getString(s: String, html: Boolean = false): String {
+private fun Context.gString(s: String, html: Boolean = false): String {
     if (true)
         return s
 
@@ -43,16 +43,16 @@ private fun Context.getString(s: String, html: Boolean = false): String {
     return s.toHtml().toString()
 }
 
-fun Context.getString(s: String): String {
-    return this.getString(s, false)
+fun Context.gString(s: String): String {
+    return this.gString(s, false)
 }
 
-fun Context.getString(@StringRes stringIdRes: Int): String {
+fun Context.gString(@StringRes stringIdRes: Int): String {
     return try {
         val s = this.resources.getString(stringIdRes)
-        getString(s)
+        gString(s)
     } catch (e: Exception) {
-        logError("getString(Context context, @StringRes int stringIdRes)", e)
+        logError("gString(Context context, @StringRes int stringIdRes)", e)
         "Error"
     }
 
@@ -72,18 +72,18 @@ private fun Context.getResId(resName: String, c: Class<*>): Int {
 
 }
 
-fun Context.getStrings(divider: String, @StringRes vararg stringIdRes: Int): String {
+fun Context.gStrings(divider: String, @StringRes vararg stringIdRes: Int): String {
     val s = StringBuilder(this.getString(stringIdRes[0]))
     if (stringIdRes.size >= 2) {
         for (i in 1 until stringIdRes.size) {
             s.append(divider).append(this.getString(stringIdRes[i]))
         }
     }
-    return this.getStrings(s.toString())
+    return this.gStrings(s.toString())
 }
 
-fun Context.getFormattedString(@StringRes stringIdRes: Int, vararg args: Any): String {
-    return this.getString(String.format(this.getString(stringIdRes), *args))
+fun Context.gFormattedString(@StringRes stringIdRes: Int, vararg args: Any): String {
+    return this.gString(String.format(this.getString(stringIdRes), *args))
 }
 
 private fun applyFilter(s: String, filter: String): String {
@@ -102,73 +102,73 @@ private fun applyFilter(s: String, filter: String): String {
 
 //SPANNED
 
-fun Context.getSpanned(s: String): Spanned {
-    return this.getString(s, true).toHtml()
+fun Context.gSpanned(s: String): Spanned {
+    return this.gString(s, true).toHtml()
 }
 
-fun Context.getSpanned(@StringRes stringIdRes: Int): Spanned? {
+fun Context.gSpanned(@StringRes stringIdRes: Int): Spanned? {
     return try {
         val s = this.resources.getString(stringIdRes)
-        this.getSpanned(s)
+        this.gSpanned(s)
     } catch (e: Exception) {
-        logError("getString(Context context, @StringRes int stringIdRes)", e)
+        logError("gString(Context context, @StringRes int stringIdRes)", e)
         null
 
     }
 }
 
-fun Context.getSpanneds(divider: String, @StringRes vararg stringIdRes: Int): Spanned {
+fun Context.gSpanneds(divider: String, @StringRes vararg stringIdRes: Int): Spanned {
     val s = StringBuilder(this.getString(stringIdRes[0]))
     if (stringIdRes.size >= 2) {
         for (i in 1 until stringIdRes.size) {
             s.append(divider).append(this.getString(stringIdRes[i]))
         }
     }
-    return this.getSpanned(s.toString())
+    return this.gSpanned(s.toString())
 }
 
-fun Context.getFormattedSpanned(@StringRes stringIdRes: Int, vararg args: Any): Spanned {
-    return this.getSpanned(String.format(getString(stringIdRes), *args))
+fun Context.gFormattedSpanned(@StringRes stringIdRes: Int, vararg args: Any): Spanned {
+    return this.gSpanned(String.format(getString(stringIdRes), *args))
 }
 
 //DIMEN
-fun getDimen(context: Context, @DimenRes dimenIdRes: Int): Float {
-    return context.resources.getDimension(dimenIdRes)
+fun Context.gDimen(@DimenRes dimenIdRes: Int): Float {
+    return resources.getDimension(dimenIdRes)
 }
 
 //DRAWABLE
-fun getDrawable(context: Context, @DrawableRes drawableResId: Int): Drawable? {
-    return ContextCompat.getDrawable(context, drawableResId)
+fun Context.gDrawable(@DrawableRes drawableResId: Int): Drawable? {
+    return ContextCompat.getDrawable(this, drawableResId)
 }
 
 //COLOR
-fun getColor(context: Context, @ColorRes colorIdRes: Int): Int {
-    return ContextCompat.getColor(context, colorIdRes)
+fun Context.gColor(@ColorRes colorIdRes: Int): Int {
+    return ContextCompat.getColor(this, colorIdRes)
 }
 
-fun getColor(s: String): Int {
+fun gColor(s: String): Int {
     return Color.parseColor(s)
 }
 
-fun getColorHex(context: Context, @ColorRes colorRes: Int): Int {
-    return getColor(context, colorRes)
+fun Context.gColorHex(@ColorRes colorRes: Int): Int {
+    return this.gColor(colorRes)
 }
 
-fun getColorString(context: Context, @ColorRes colorRes: Int): String {
-    return getColor(context, colorRes).toString()
+fun Context.gColorString(@ColorRes colorRes: Int): String {
+    return gColor(colorRes).toString()
 }
 
-fun getThemeColor(context: Context, attributeColor: Int): Int {
+fun Context.gThemeColor(attributeColor: Int): Int {
     val value = TypedValue()
-    context.theme.resolveAttribute(attributeColor, value, true)
+    theme.resolveAttribute(attributeColor, value, true)
     return value.data
 }
 
-fun getPrimaryColor(context: Context): Int {
-    return getThemeColor(context, R.attr.colorPrimary)
+fun Context.gPrimaryColor(): Int {
+    return this.gThemeColor(R.attr.colorPrimary)
 }
 
-fun getAccentColor(context: Context): Int {
-    return getThemeColor(context, R.attr.colorAccent)
+fun Context.gAccentColor(): Int {
+    return gThemeColor(R.attr.colorAccent)
 }
 
