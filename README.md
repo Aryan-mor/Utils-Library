@@ -47,10 +47,10 @@ You can convert all classes to json like this and hydrate
 ```ConvetToJson
 
     val json = Any().toJson()
+    //json type is String
 
-    //json type is string
-
-    json.hydrate(Any::class.java)
+    val myObject = json.hydrate(Any::class.java)
+    //myObject type is Any
 
 ```
 
