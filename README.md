@@ -37,6 +37,7 @@ dependencies {
 * [DirUtils](#dirfunctions)
 * [FileUtils](#filefunctions)
 * [Encryption](#encryptionfunctions)
+* [Hash](#hashfunctions)
 
 # Example
 Some examples of library functions
