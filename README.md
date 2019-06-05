@@ -100,6 +100,18 @@ Another functions
     
     ***************************************
     
+    //Random number
+    getRandomNumber()
+    //or
+    //getRandomNumber(0,100)
+    
+    ***************************************
+    
+    //RandomString
+    randomString(5) // example return XsREs
+    randomStringWithNumber(5) // example return F5A8F
+     
+    ***************************************
     //You can vibrate phone if use vibrate permision on your manifest | fucntions return Vibrator?
     activity.vibrate(VibrationEffect)
     //Or 
