@@ -19,7 +19,7 @@ allprojects {
 
 //Module:App
 dependencies {
-      implementation 'com.github.Aryan-mor:Utils-Library:1.3.8'
+      implementation 'com.github.Aryan-mor:Utils-Library:1.3.9'
 }
 ```
 
