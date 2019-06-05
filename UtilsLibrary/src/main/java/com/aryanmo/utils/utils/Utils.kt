@@ -290,6 +290,15 @@ fun randomString(stringLength: Int): String {
     return randomS
 }
 
+fun randomStringWithNumber(stringLength: Int): String {
+    val list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".toCharArray()
+    var randomS = ""
+    for (i in 1..stringLength) {
+        randomS += list[getRandomNumber(0, list.size - 1)]
+    }
+    return randomS
+}
+
 //Vibrate
 @SuppressLint("MissingPermission")
 fun Activity.vibrate(vibrationEffect: VibrationEffect): Vibrator? {
