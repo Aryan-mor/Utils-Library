@@ -29,7 +29,7 @@ dependencies {
 * [Log](#logfunctions)
 * [SharedPreferences](#sharedpreferencesfunctions)
 * [Toast](#toastfunctions)
-* [SnackBar](#toastfunctions)
+* [SnackBar](#snackbarfunctions)
 * [CheckUtils](#checkutilsfunctions)
 * [Convertor](#convertorfunctions)
 * [DateUtils](#datefunctions)
