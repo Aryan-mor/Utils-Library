@@ -241,12 +241,12 @@ You can make hash of your string using 6 algoritm
 ```hash
 
     val s = "MyString"
-    logE("MD5 -> " + s.toMd5())
-    logE("toSHA-1 -> " + s.toSHA_1())
-    logE("toSHA-224 -> " + s.toSHA_224())
-    logE("toSHA-256 -> " + s.toSHA_256())
-    logE("toSHA-384 -> " + s.toSHA_384())
-    logE("toSHA-512 -> " + s.toSHA_512())
+    logI("toMD5 -> " + s.toMd5())
+    logI("toSHA-1 -> " + s.toSHA_1())
+    logI("toSHA-224 -> " + s.toSHA_224())
+    logI("toSHA-256 -> " + s.toSHA_256())
+    logI("toSHA-384 -> " + s.toSHA_384())
+    logI("toSHA-512 -> " + s.toSHA_512())
         
 ```
 
