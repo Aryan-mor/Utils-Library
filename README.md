@@ -225,11 +225,11 @@ items will be decrypted upon retrieving
     
     context.getPref("key", Any:class.java)
     //Or
-    getPrefBoolean("key", defultValue)
-    getPrefString("key", defultValue)
-    getPrefInt("key", defultValue)
-    getPrefFloat("key", defultValue)
-    getPrefLong("key", defultValue)
+    context.getPrefBoolean("key", defultValue)
+    context.getPrefString("key", defultValue)
+    context.getPrefInt("key", defultValue)
+    context.getPrefFloat("key", defultValue)
+    context.getPrefLong("key", defultValue)
 
 ```
 
