@@ -2,11 +2,8 @@ package com.aryanmo.utilsexample
 
 import android.os.Bundle
 import com.aryanmo.utils.BaseActivity
-import com.aryanmo.utils.utils.gString
-import com.aryanmo.utils.utils.intentTo
-import com.aryanmo.utils.utils.log.DEFAULT_LOG_MODE
-import com.aryanmo.utils.utils.log.LOG_ERROR_MODE
-import com.aryanmo.utils.utils.log.log
+import com.aryanmo.utils.utils.*
+import com.aryanmo.utils.utils.log.*
 
 class MainActivity : BaseActivity(true) {
 
@@ -76,5 +73,16 @@ class MainActivity : BaseActivity(true) {
 //
 //        log("md5 -> " + a.md5())
 //        intentTo(TestActivity::class)
+
+
+
+
+        val s = "MyString"
+        logI("toMD5 -> " + s.toMd5())
+        logI("toSHA-1 -> " + s.toSHA_1())
+        logI("toSHA-224 -> " + s.toSHA_224())
+        logI("toSHA-256 -> " + s.toSHA_256())
+        logI("toSHA-384 -> " + s.toSHA_384())
+        logI("toSHA-512 -> " + s.toSHA_512())
     }
 }
