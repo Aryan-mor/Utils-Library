@@ -58,6 +58,7 @@ You can convert all classes to json like this and hydrate
 
 Another functions
 ```AnotherFunction
+
     //You can close application like this
     activity.closeApp()
     
@@ -104,11 +105,11 @@ Another functions
     //Or 
     activity.vibrate(milliseconds: Long, amplitude: Int)
     
-    
 ```
 
 ## IntentFunctions
 ```intent
+
 class MainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -132,22 +133,28 @@ class MainActivity : AppCompatActivity(){
     }
 
 }
+
 ```
 
 You can intent to your app package setting like this
 ```intentToPackageSetting
+
     context.intentToPackageSetting()
+    
 ```
 
 
 You can open link like this
 ```intentToPackageSetting
+
     context.openLink("http://...")
+    
 ```
 
 ## LogFunctions
 AnyWhere can use log funtion :relaxed:
 ```basicLog
+
     //Basic usage
     log(Any) // log any object
     //or
@@ -217,6 +224,7 @@ items will be decrypted upon retrieving
 ## ToastFunctions
 Toast fuction by context
 ```toast
+
     //ToastFucntion | return Toast
     context.toast("myToastMessage").show()
     
@@ -227,3 +235,18 @@ Toast fuction by context
     context.longToast(R.string.myString).show()
 
 ```
+
+## HashFunctions
+You can make hash of your string using 6 algoritm
+```hash
+
+    val s = "MyString"
+    logE("MD5 -> " + s.toMd5())
+    logE("toSHA-1 -> " + s.toSHA_1())
+    logE("toSHA-224 -> " + s.toSHA_224())
+    logE("toSHA-256 -> " + s.toSHA_256())
+    logE("toSHA-384 -> " + s.toSHA_384())
+    logE("toSHA-512 -> " + s.toSHA_512())
+        
+```
+
