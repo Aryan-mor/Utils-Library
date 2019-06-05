@@ -6,7 +6,6 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -19,6 +18,8 @@ import com.aryanmo.utils.R
 import com.aryanmo.utils.utils.log.logError
 import com.aryanmo.utils.utils.log.logNullPointerExceptionError
 import java.util.*
+
+
 
 
 val sdkApiLevel: Int
@@ -103,8 +104,6 @@ fun Application.getAppInfo(): HashMap<String, String> {
     }
 
 }
-
-
 
 fun Activity.closeApp() {
     try {
@@ -272,6 +271,23 @@ fun isLtr(): Boolean {
 
 fun isLtr(locale: Locale): Boolean {
     return !isRTL(locale)
+}
+
+fun getRandomNumber(): Int {
+    return Random().nextInt()
+}
+
+fun getRandomNumber(min: Int, max: Int): Int {
+    return Random().nextInt((max - min) + 1) + min
+}
+
+fun randomString(stringLength: Int): String {
+    val list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray()
+    var randomS = ""
+    for (i in 1..stringLength) {
+        randomS += list[getRandomNumber(0, list.size - 1)]
+    }
+    return randomS
 }
 
 //Vibrate
