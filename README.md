@@ -1,7 +1,7 @@
 # Utils-Library
 
 Android amazing helper function library<br>
-`Only work on kotlin`
+`Works better on kotlin`
 
 Usage
 --------
@@ -19,7 +19,7 @@ allprojects {
 
 //Module:App
 dependencies {
-      implementation 'com.github.Aryan-mor:Utils-Library:1.3.8'
+      implementation 'com.github.Aryan-mor:Utils-Library:1.3.9'
 }
 ```
 
@@ -29,13 +29,15 @@ dependencies {
 * [Log](#logfunctions)
 * [SharedPreferences](#sharedpreferencesfunctions)
 * [Toast](#toastfunctions)
-* [SnackBar](#toastfunctions)
+* [SnackBar](#snackbarfunctions)
 * [CheckUtils](#checkutilsfunctions)
 * [Convertor](#convertorfunctions)
 * [DateUtils](#datefunctions)
+* [VoiceRecorder](#voicerecorder)
 * [DirUtils](#dirfunctions)
 * [FileUtils](#filefunctions)
 * [Encryption](#encryptionfunctions)
+* [Hash](#hashfunctions)
 
 # Example
 Some examples of library functions
@@ -56,6 +58,7 @@ You can convert all classes to json like this and hydrate
 
 Another functions
 ```AnotherFunction
+
     //You can close application like this
     activity.closeApp()
     
@@ -102,11 +105,11 @@ Another functions
     //Or 
     activity.vibrate(milliseconds: Long, amplitude: Int)
     
-    
 ```
 
 ## IntentFunctions
 ```intent
+
 class MainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,22 +133,28 @@ class MainActivity : AppCompatActivity(){
     }
 
 }
+
 ```
 
 You can intent to your app package setting like this
 ```intentToPackageSetting
+
     context.intentToPackageSetting()
+    
 ```
 
 
 You can open link like this
 ```intentToPackageSetting
+
     context.openLink("http://...")
+    
 ```
 
 ## LogFunctions
 AnyWhere can use log funtion :relaxed:
 ```basicLog
+
     //Basic usage
     log(Any) // log any object
     //or
@@ -215,6 +224,7 @@ items will be decrypted upon retrieving
 ## ToastFunctions
 Toast fuction by context
 ```toast
+
     //ToastFucntion | return Toast
     context.toast("myToastMessage").show()
     
@@ -225,3 +235,18 @@ Toast fuction by context
     context.longToast(R.string.myString).show()
 
 ```
+
+## HashFunctions
+You can make hash of your string using 6 algoritm
+```hash
+
+    val s = "MyString"
+    logI("toMD5 -> " + s.toMd5())
+    logI("toSHA-1 -> " + s.toSHA_1())
+    logI("toSHA-224 -> " + s.toSHA_224())
+    logI("toSHA-256 -> " + s.toSHA_256())
+    logI("toSHA-384 -> " + s.toSHA_384())
+    logI("toSHA-512 -> " + s.toSHA_512())
+        
+```
+
