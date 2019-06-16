@@ -108,9 +108,9 @@ fun Context.intentToPackageSetting() {
     intentTo(intent)
 }
 
-fun Context.openLink(link: String): Boolean {
+fun Activity.openLink(link: String): Boolean {
     try {
-        this.intentTo(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
         return true
     } catch (e: Exception) {
         logError("openLink", e)
