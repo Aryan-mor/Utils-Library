@@ -26,3 +26,15 @@ fun <T> String.hydrate(classOf: Class<T>): T? {
         }
     }
 }
+
+fun <T> Map<String,Any>.hydrate(classOf: Class<T>): T? {
+    return try {
+        this.toJson()?.hydrate(classOf)
+    } catch (e: Exception) {
+        try {
+            this as T
+        } catch (e: Exception) {
+            null
+        }
+    }
+}
