@@ -9,6 +9,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.provider.Settings
 import android.text.Html
 import android.text.Spanned
 import android.util.TypedValue
@@ -18,6 +19,7 @@ import com.aryanmo.utils.R
 import com.aryanmo.utils.utils.log.logError
 import com.aryanmo.utils.utils.log.logNullPointerExceptionError
 import java.util.*
+import android.webkit.WebView
 
 
 
@@ -25,7 +27,7 @@ import java.util.*
 val sdkApiLevel: Int
     get() = android.os.Build.VERSION.SDK_INT
 
-fun Activity.getVersionCode(): Int {
+fun Context.getVersionCode(): Int {
     try {
         val pInfo = this.packageManager.getPackageInfo(this.packageName, 0)
         return if (android.os.Build.VERSION.SDK_INT >= 28) {
@@ -40,22 +42,7 @@ fun Activity.getVersionCode(): Int {
     return -1
 }
 
-fun Application.getVersionCode(): Int {
-    try {
-        val pInfo = this.packageManager.getPackageInfo(this.packageName, 0)
-        return if (android.os.Build.VERSION.SDK_INT >= 28) {
-            pInfo.longVersionCode.toInt()
-        } else {
-            pInfo.versionCode
-        }
-    } catch (e: Exception) {
-        logError("getVersionCode", e)
-    }
-
-    return -1
-}
-
-fun Activity.getVersionName(): String {
+fun Context.getVersionName(): String {
     try {
         val pInfo = this.packageManager.getPackageInfo(this.packageName, 0)
         return pInfo.versionName
@@ -66,12 +53,13 @@ fun Activity.getVersionName(): String {
 
 }
 
-fun Activity.getAppInfo(): HashMap<String, String> {
+fun Context.getAppInfo(): HashMap<String, String> {
     try {
         val hashMap = HashMap<String, String>()
         hashMap["os"] = "android"
         hashMap["android_sdk_api_level"] = sdkApiLevel.toString()
-        hashMap["version"] = this.getVersionCode().toString()
+        hashMap["version_code"] = this.getVersionCode().toString()
+        hashMap["version_name"] = this.getVersionName()
         return hashMap
     } catch (e: Exception) {
         logError("getAppInfo", e)
@@ -80,29 +68,28 @@ fun Activity.getAppInfo(): HashMap<String, String> {
 
 }
 
-fun Application.getVersionName(): String {
-    try {
-        val pInfo = this.packageManager.getPackageInfo(this.packageName, 0)
-        return pInfo.versionName
-    } catch (e: Exception) {
-        logError("getVersionCode", e)
-        return ""
+@SuppressLint("HardwareIds")
+fun Context.getDeviceId(): String? {
+    return try {
+        Settings.Secure.getString(
+            contentResolver,
+            Settings.Secure.ANDROID_ID
+        )
+    } catch (e: java.lang.Exception) {
+        null
     }
-
 }
 
-fun Application.getAppInfo(): HashMap<String, String> {
-    try {
-        val hashMap = HashMap<String, String>()
-        hashMap["os"] = "android"
-        hashMap["android_sdk_api_level"] = sdkApiLevel.toString()
-        hashMap["version"] = this.getVersionCode().toString()
-        return hashMap
-    } catch (e: Exception) {
-        logError("getAppInfo", e)
-        return HashMap()
+fun Context.getOsClientVersion(): HashMap<String, String> {
+    val header = getAppInfo()
+    getDeviceId()?.let {
+        header.put("device_id", it)
     }
+    return header
+}
 
+fun Context.getUserAgent(): String? {
+    return WebView(this).settings.userAgentString
 }
 
 fun Activity.closeApp() {

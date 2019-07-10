@@ -75,6 +75,9 @@ class MainActivity : BaseActivity(true) {
 //        intentTo(TestActivity::class)
 
 
+        logE("deviceId -> " + getDeviceId())
+        getOsClientVersion().logThisE()
+        logE("userAgent -> " + getUserAgent())
 
 
         val s = "MyString"
