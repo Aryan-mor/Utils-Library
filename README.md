@@ -1,4 +1,5 @@
-# Utils-Library
+# Utils-Library [![](https://jitpack.io/v/Aryan-mor/Utils-Library.svg)](https://jitpack.io/#Aryan-mor/Utils-Library)
+
 
 Android amazing helper function library<br>
 `Works better on kotlin`
